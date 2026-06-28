@@ -1,0 +1,220 @@
+---
+title: "Quake Radar"
+format:
+  dashboard:
+    theme: [cosmo, custom.scss]
+    nav-buttons:
+      - icon: github
+        href: https://github.com/ronaldmego/quake-radar
+jupyter: python3
+---
+
+```{python}
+#| echo: false
+#| output: false
+import sys
+sys.path.insert(0, "src")
+import numpy as np
+from datetime import datetime, timezone
+from api_client import USGSClient
+from data_processor import process_quakes, summary_stats
+from visualizations import recent_table, strongest_table, significant_table
+
+_c = USGSClient()
+df = process_quakes(_c.get_feed("all_day"))
+sig = process_quakes(_c.get_feed("significant_week"))
+stats = summary_stats(df, sig)
+updated = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+
+# Map/catalog records: real earthquakes with coords and non-negative magnitude.
+_map = df[(df["type"] == "earthquake") & df["lat"].notna() & df["mag"].notna() & (df["mag"] >= 0)]
+quake_records = _map[["lon", "lat", "mag", "place", "depth", "time_str"]].replace({np.nan: None}).to_dict("records")
+ojs_define(quakes=quake_records)
+```
+
+# Map
+
+## Row {height=20%}
+
+```{python}
+#| content: valuebox
+#| title: "Quakes (24h)"
+dict(value=stats["count_24h"], icon="activity", color="#1f3a5f")
+```
+
+```{python}
+#| content: valuebox
+#| title: "Strongest (24h)"
+dict(value=f'M{stats["max_mag"]}', icon="graph-up-arrow", color="#a8482b")
+```
+
+```{python}
+#| content: valuebox
+#| title: "M4.5+ (24h)"
+dict(value=stats["m45_24h"], icon="exclamation-triangle", color="#d97706")
+```
+
+```{python}
+#| content: valuebox
+#| title: "Significant (7d)"
+dict(value=stats["significant_7d"], icon="star", color="#15803d")
+```
+
+```{python}
+#| content: valuebox
+#| title: "Deepest (km)"
+dict(value=stats["max_depth"], icon="arrow-down-circle", color="#16202e")
+```
+
+## Row {height=72%}
+
+::: {.card title="Live world map — last 24h (dot size = magnitude · color = depth)"}
+
+```{ojs}
+//| echo: false
+d3 = require("d3@7")
+```
+
+```{ojs}
+//| echo: false
+topojson = require("topojson-client@3")
+```
+
+```{ojs}
+//| echo: false
+land = {
+  const world = await d3.json("https://cdn.jsdelivr.net/npm/world-atlas@2/land-110m.json");
+  return topojson.feature(world, world.objects.land);
+}
+```
+
+```{ojs}
+//| echo: false
+Plot.plot({
+  width: 1100,
+  height: 540,
+  projection: "equal-earth",
+  r: { range: [1, 14] },
+  color: {
+    type: "linear", scheme: "YlOrRd", reverse: true,
+    domain: [0, 300], label: "Depth (km)", legend: true
+  },
+  marks: [
+    Plot.sphere({ fill: "#eef1f6", stroke: "#cbd3df" }),
+    Plot.geo(land, { fill: "#e3ddcf", stroke: "#cdbfa5" }),
+    Plot.dot(quakes, {
+      x: "lon", y: "lat", r: "mag", fill: "depth",
+      stroke: "#fff", strokeWidth: 0.4, strokeOpacity: 0.5, fillOpacity: 0.68,
+      sort: "mag",  // draw stronger quakes on top so they aren't buried in clusters
+      title: d => `M${d.mag} · ${d.place}\n${d.depth} km deep · ${d.time_str} UTC`,
+      tip: true
+    })
+  ]
+})
+```
+
+:::
+
+## Row {height=8%}
+
+```{python}
+#| echo: false
+#| output: asis
+print(
+    "**Source:** USGS `/earthquakes/feed/v1.0/summary/all_day.geojson` (public, no auth) — "
+    "[open the raw JSON](https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson) · "
+    f"**Data as of:** {updated} · "
+    "**Code:** [github.com/ronaldmego/quake-radar](https://github.com/ronaldmego/quake-radar)"
+)
+```
+
+# Earthquakes
+
+## Row {height=92%}
+
+### Column {.tabset}
+
+```{python}
+#| title: Recent
+#| echo: false
+recent_table(df)
+```
+
+```{python}
+#| title: Strongest (24h)
+#| echo: false
+strongest_table(df)
+```
+
+```{python}
+#| title: Significant (7d)
+#| echo: false
+significant_table(sig)
+```
+
+::: {.card title="Catalog — search & sort"}
+
+```{ojs}
+//| echo: false
+viewof q = Inputs.search(quakes, { placeholder: `Search ${quakes.length} quakes…` })
+```
+
+```{ojs}
+//| echo: false
+Inputs.table(q, {
+  columns: ["mag", "place", "depth", "time_str"],
+  header: { mag: "Mag", place: "Place", depth: "Depth (km)", time_str: "Time (UTC)" },
+  sort: "mag",
+  reverse: true,
+  rows: 20,
+  layout: "auto"
+})
+```
+
+:::
+
+## Row {height=8%}
+
+```{python}
+#| echo: false
+#| output: asis
+print(
+    "**Source:** USGS `/earthquakes/feed/v1.0/summary/{all_day, significant_week}.geojson` "
+    "(public, no auth) — "
+    "[open the raw JSON](https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson) · "
+    f"**Data as of:** {updated} · "
+    "**Code:** [github.com/ronaldmego/quake-radar](https://github.com/ronaldmego/quake-radar)"
+)
+```
+
+# About
+
+::: {.card title="How this dashboard works — automated, open-source data delivery"}
+
+**Quake Radar** is a live, **open-source** demo of *automated data delivery*: raw public data
+in, a polished self-updating dashboard out — with **zero server and zero cost**.
+
+**The pipeline (fully open, auditable):**
+
+```
+USGS GeoJSON API  →  Python (pandas + great-tables)  →  Quarto dashboard  →  GitHub Pages
+        \____________ refreshed every 30 min by GitHub Actions (cron) ____________/
+```
+
+- **No server, no cost, no API key.** The USGS feeds are public; a GitHub Actions cron re-fetches,
+  re-renders and redeploys every 30 minutes.
+- **Verifiable by design.** Every number traces back to the exact public endpoint shown in the
+  *Source* footer on each page — open the raw JSON and check it yourself.
+- **Open methodology.** The code that fetches and transforms the data is on GitHub; fork it,
+  read it, reuse it.
+
+**Built & maintained by Ronald Mego** — data & analytics.
+Code: [github.com/ronaldmego/quake-radar](https://github.com/ronaldmego/quake-radar) ·
+Profile: [github.com/ronaldmego](https://github.com/ronaldmego)
+
+**Data & responsibility.** Source: [USGS Earthquake Hazards Program](https://earthquake.usgs.gov/earthquakes/)
+(public domain). This is an informational dashboard, not an official alert system — for emergencies and
+official guidance always refer to your national agency (e.g. **FUNVISIS** in Venezuela) and the
+official USGS event pages linked in each table.
+
+:::
