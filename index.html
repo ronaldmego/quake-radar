@@ -1,1 +1,1399 @@
-<!doctype html><title>Quake Radar — building…</title>Building…
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Quake Radar</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-20fc9822bcdcf8da166f19444734e5bc.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-2e4daac90d0b4ba0c23d0a77811efccc.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-20fc9822bcdcf8da166f19444734e5bc.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-bda2378aec05754a5f277200143fd5d4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-bda2378aec05754a5f277200143fd5d4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-bda2378aec05754a5f277200143fd5d4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-dashboard/quarto-dashboard.js"></script>
+<script src="site_libs/quarto-dashboard/stickythead.js"></script>
+
+
+
+<script src="site_libs/quarto-dashboard/web-components.js" type="module"></script>
+<script src="site_libs/quarto-dashboard/components.js"></script>
+
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="module" src="site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="quarto-dashboard dashboard-fill fullcontent quarto-light">
+
+<header id="quarto-dashboard-header">
+<nav class="navbar navbar-expand-md slim" data-bs-theme="dark">
+  <div class="navbar-container container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-controls="dashboard-collapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>    
+
+
+    <div class="navbar-brand-container">
+
+
+      <div class="navbar-title">
+        <div class="navbar-title-text"><a href="#">Quake Radar</a></div>
+        
+        
+      </div>
+    </div>
+<div id="dashboard-collapse" class="navbar-collapse collapse"><ul class="navbar-nav navbar-nav-scroll me-auto" role="tablist"><li class="nav-item" role="presentation"><a id="tab-map" class="nav-link active" data-bs-toggle="tab" role="tab" data-bs-target="#map" data-scrolling="false" href="#map" aria-controls="map" aria-selected="true"><span class="nav-link-text">Map</span></a></li><li class="nav-item" role="presentation"><a id="tab-earthquakes" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#earthquakes" data-scrolling="false" href="#earthquakes" aria-controls="earthquakes" aria-selected="false"><span class="nav-link-text">Earthquakes</span></a></li><li class="nav-item" role="presentation"><a id="tab-about" class="nav-link" data-bs-toggle="tab" role="tab" data-bs-target="#about" data-scrolling="false" href="#about" aria-controls="about" aria-selected="false"><span class="nav-link-text">About</span></a></li></ul><div class="quarto-dashboard-links"><a class="quarto-dashboard-link" href="https://github.com/ronaldmego/quake-radar"><i class="bi bi-github"></i></a></div></div></div>
+</nav>
+</header>
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-layout-custom quarto-dashboard-content bslib-gap-spacing html-fill-container bslib-page-fill quarto-dashboard-pages">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+<!-- main -->
+
+<div id="7dc261dc" class="cell bslib-grid-item html-fill-item" data-execution_count="1">
+<script type="ojs-define">{"contents": [{"name": "quakes", "value": [{"lon": -155.1, "lat": 57.21, "mag": 1.9, "place": "55 km SW of Karluk, Alaska", "depth": 61.6, "time_str": "2026-06-28 19:42"}, {"lon": -115.2844, "lat": 37.1161, "mag": 2.41, "place": "29 km SSW of Alamo, Nevada", "depth": 3.1, "time_str": "2026-06-28 19:30"}, {"lon": -115.3023, "lat": 37.082, "mag": 2.07, "place": "33 km SSW of Alamo, Nevada", "depth": 7.2, "time_str": "2026-06-28 19:27"}, {"lon": 119.2433, "lat": 16.4879, "mag": 4.6, "place": "63 km WNW of Catuday, Philippines", "depth": 10.0, "time_str": "2026-06-28 19:25"}, {"lon": -150.528, "lat": 61.974, "mag": 2.7, "place": "36 km NW of Willow, Alaska", "depth": 26.8, "time_str": "2026-06-28 19:23"}, {"lon": -149.503, "lat": 61.936, "mag": 1.6, "place": "25 km NNW of Fishhook, Alaska", "depth": 3.9, "time_str": "2026-06-28 19:20"}, {"lon": -66.9796666666667, "lat": 17.9645, "mag": 2.21, "place": "7 km E of La Parguera, Puerto Rico", "depth": 13.8, "time_str": "2026-06-28 19:12"}, {"lon": -161.7628, "lat": 54.2687, "mag": 3.3, "place": "95 km SSE of King Cove, Alaska", "depth": 35.0, "time_str": "2026-06-28 19:10"}, {"lon": 119.2088, "lat": 16.5146, "mag": 5.0, "place": "68 km WNW of Catuday, Philippines", "depth": 10.0, "time_str": "2026-06-28 19:09"}, {"lon": -122.791000366211, "lat": 38.8221664428711, "mag": 1.08, "place": "6 km NNW of The Geysers, CA", "depth": 1.0, "time_str": "2026-06-28 19:04"}, {"lon": -122.813499450684, "lat": 38.8246650695801, "mag": 1.08, "place": "7 km NW of The Geysers, CA", "depth": 2.0, "time_str": "2026-06-28 18:53"}, {"lon": -147.455, "lat": 64.982, "mag": 1.3, "place": "8 km ENE of Fox, Alaska", "depth": 3.6, "time_str": "2026-06-28 18:49"}, {"lon": 149.341, "lat": -6.4983, "mag": 4.7, "place": "39 km SW of Kandrian, Papua New Guinea", "depth": 30.0, "time_str": "2026-06-28 18:45"}, {"lon": 3.0556, "lat": 34.7539, "mag": 4.6, "place": "21 km WNW of Djelfa, Algeria", "depth": 10.0, "time_str": "2026-06-28 18:37"}, {"lon": -104.072, "lat": 31.806, "mag": 0.8, "place": "46 km WNW of Mentone, Texas", "depth": 0.0, "time_str": "2026-06-28 18:32"}, {"lon": -116.829333333333, "lat": 33.7278333333333, "mag": 1.05, "place": "6 km ESE of Valle Vista, CA", "depth": 15.2, "time_str": "2026-06-28 18:23"}, {"lon": -152.286, "lat": 59.027, "mag": 2.8, "place": "42 km SSW of Nanwalek, Alaska", "depth": 52.7, "time_str": "2026-06-28 18:20"}, {"lon": -148.183, "lat": 61.004, "mag": 1.6, "place": "37 km NE of Whittier, Alaska", "depth": 21.9, "time_str": "2026-06-28 18:16"}, {"lon": -122.788497924805, "lat": 38.8209991455078, "mag": 1.17, "place": "6 km NNW of The Geysers, CA", "depth": 2.4, "time_str": "2026-06-28 18:06"}, {"lon": -149.409, "lat": 61.087, "mag": 1.2, "place": "20 km NW of Girdwood, Alaska", "depth": 32.6, "time_str": "2026-06-28 18:06"}, {"lon": 125.36, "lat": 5.7561, "mag": 4.5, "place": "10 km SSE of Kiupo, Philippines", "depth": 60.2, "time_str": "2026-06-28 17:57"}, {"lon": -140.007, "lat": 60.319, "mag": 2.2, "place": "87 km N of Yakutat, Alaska", "depth": 5.0, "time_str": "2026-06-28 17:56"}, {"lon": -121.277168273926, "lat": 40.0328330993652, "mag": 2.15, "place": "4 km NW of Belden, CA", "depth": 12.0, "time_str": "2026-06-28 17:50"}, {"lon": -153.444, "lat": 59.196, "mag": 2.2, "place": "71 km SE of Pope-Vannoy Landing, Alaska", "depth": 96.5, "time_str": "2026-06-28 17:43"}, {"lon": -66.1655, "lat": -22.8713, "mag": 4.5, "place": "50 km WSW of Abra Pampa, Argentina", "depth": 252.9, "time_str": "2026-06-28 17:34"}, {"lon": -117.822333333333, "lat": 35.3033333333333, "mag": 1.07, "place": "19 km WSW of Johannesburg, CA", "depth": 8.5, "time_str": "2026-06-28 17:23"}, {"lon": -140.5106, "lat": 66.6321, "mag": 2.7, "place": "142 km E of Chalkyitsik, Alaska", "depth": 9.5, "time_str": "2026-06-28 17:22"}, {"lon": -116.390833333333, "lat": 33.3338333333333, "mag": 1.08, "place": "9 km N of Borrego Springs, CA", "depth": 6.2, "time_str": "2026-06-28 17:09"}, {"lon": -117.693, "lat": 36.064, "mag": 0.68, "place": "23 km E of Coso Junction, CA", "depth": 2.5, "time_str": "2026-06-28 17:07"}, {"lon": -151.913, "lat": 61.795, "mag": 2.0, "place": "34 km SW of Skwentna, Alaska", "depth": 109.2, "time_str": "2026-06-28 17:05"}, {"lon": -116.667, "lat": 33.9996666666667, "mag": 1.51, "place": "10 km WSW of Morongo Valley, CA", "depth": 13.1, "time_str": "2026-06-28 17:00"}, {"lon": -122.674835205078, "lat": 39.6851654052734, "mag": 2.05, "place": "6 km NE of Alder Springs, CA", "depth": 8.7, "time_str": "2026-06-28 16:49"}, {"lon": -122.826835632324, "lat": 38.8116683959961, "mag": 0.84, "place": "7 km WNW of The Geysers, CA", "depth": 1.5, "time_str": "2026-06-28 16:40"}, {"lon": -122.824836730957, "lat": 38.8066673278809, "mag": 0.72, "place": "7 km WNW of The Geysers, CA", "depth": 2.2, "time_str": "2026-06-28 16:36"}, {"lon": -147.359, "lat": 60.04, "mag": 1.8, "place": "36 km E of Chenega, Alaska", "depth": 24.0, "time_str": "2026-06-28 16:32"}, {"lon": -104.222, "lat": 31.756, "mag": 1.5, "place": "48 km SSE of Whites City, New Mexico", "depth": 4.1, "time_str": "2026-06-28 16:30"}, {"lon": -155.072, "lat": 58.301, "mag": 0.7, "place": "89 km NNW of Karluk, Alaska", "depth": 5.0, "time_str": "2026-06-28 16:20"}, {"lon": -116.6885, "lat": 33.6313333333333, "mag": 0.85, "place": "9 km N of Anza, CA", "depth": 16.2, "time_str": "2026-06-28 16:12"}, {"lon": 104.8416, "lat": 28.6031, "mag": 5.2, "place": "8 km WNW of Changning, China", "depth": 10.0, "time_str": "2026-06-28 16:12"}, {"lon": -153.468, "lat": 59.705, "mag": 1.8, "place": "37 km ESE of Pedro Bay, Alaska", "depth": 123.7, "time_str": "2026-06-28 16:08"}, {"lon": -155.36, "lat": 58.214, "mag": 0.4, "place": "89 km NW of Karluk, Alaska", "depth": 2.6, "time_str": "2026-06-28 15:33"}, {"lon": -122.80883026123, "lat": 38.8238334655762, "mag": 1.1, "place": "7 km NW of The Geysers, CA", "depth": 2.7, "time_str": "2026-06-28 15:22"}, {"lon": -160.7948, "lat": 54.1962, "mag": 3.6, "place": "128 km S of Sand Point, Alaska", "depth": 30.1, "time_str": "2026-06-28 15:04"}, {"lon": -80.72, "lat": 34.1641666666667, "mag": 2.22, "place": "6 km E of Elgin, South Carolina", "depth": 4.4, "time_str": "2026-06-28 14:56"}, {"lon": 142.2587, "lat": 40.3091, "mag": 4.2, "place": "43 km ENE of Noda, Japan", "depth": 56.8, "time_str": "2026-06-28 14:49"}, {"lon": -103.029, "lat": 31.625, "mag": 1.7, "place": "6 km NNW of Wickett, Texas", "depth": 0.0, "time_str": "2026-06-28 14:47"}, {"lon": -116.711666666667, "lat": 33.539, "mag": 0.26, "place": "4 km WSW of Anza, CA", "depth": 5.5, "time_str": "2026-06-28 14:42"}, {"lon": -147.23, "lat": 67.708, "mag": 2.6, "place": "84 km NNW of Venetie, Alaska", "depth": 0.2, "time_str": "2026-06-28 14:36"}, {"lon": -122.824165344238, "lat": 38.8404998779297, "mag": 0.78, "place": "9 km WNW of Cobb, CA", "depth": 2.3, "time_str": "2026-06-28 14:22"}, {"lon": -156.53, "lat": 57.568, "mag": 1.9, "place": "52 km E of Ugashik, Alaska", "depth": 121.6, "time_str": "2026-06-28 14:12"}, {"lon": -155.595, "lat": 57.131, "mag": 2.3, "place": "84 km SW of Karluk, Alaska", "depth": 70.5, "time_str": "2026-06-28 14:09"}, {"lon": -149.898, "lat": 61.361, "mag": 1.1, "place": "4 km E of Point MacKenzie, Alaska", "depth": 30.2, "time_str": "2026-06-28 13:49"}, {"lon": -118.356166666667, "lat": 34.05, "mag": 1.51, "place": "4 km S of West Hollywood, CA", "depth": 10.7, "time_str": "2026-06-28 13:42"}, {"lon": -116.4885, "lat": 33.5111666666667, "mag": 0.55, "place": "18 km ESE of Anza, CA", "depth": 15.2, "time_str": "2026-06-28 13:40"}, {"lon": -116.490666666667, "lat": 33.5023333333333, "mag": 0.47, "place": "18 km ESE of Anza, CA", "depth": 12.6, "time_str": "2026-06-28 13:34"}, {"lon": -155.501159667969, "lat": 19.1846675872803, "mag": 1.94, "place": "3 km SW of P\u0101hala, Hawaii", "depth": 31.9, "time_str": "2026-06-28 13:31"}, {"lon": -116.495, "lat": 33.4948333333333, "mag": 0.5, "place": "18 km ESE of Anza, CA", "depth": 12.4, "time_str": "2026-06-28 13:12"}, {"lon": -123.040496826172, "lat": 47.4661674499512, "mag": 2.03133034706116, "place": "10 km NE of Hoodsport, Washington", "depth": 6.4, "time_str": "2026-06-28 13:04"}, {"lon": -104.493, "lat": 31.632, "mag": 1.6, "place": "61 km S of Whites City, New Mexico", "depth": 3.6, "time_str": "2026-06-28 13:03"}, {"lon": -116.744833333333, "lat": 33.5171666666667, "mag": 0.88, "place": "8 km WSW of Anza, CA", "depth": 4.0, "time_str": "2026-06-28 12:56"}, {"lon": -117.5781, "lat": 39.4277, "mag": 1.82, "place": "44 km W of Austin, Nevada", "depth": 14.5, "time_str": "2026-06-28 12:46"}, {"lon": -116.552833333333, "lat": 33.5136666666667, "mag": 0.57, "place": "12 km ESE of Anza, CA", "depth": 13.9, "time_str": "2026-06-28 12:38"}, {"lon": -64.1855, "lat": 18.425, "mag": 3.41, "place": "65 km E of Cruz Bay, U.S. Virgin Islands", "depth": 24.9, "time_str": "2026-06-28 12:09"}, {"lon": -149.567, "lat": 62.101, "mag": 1.5, "place": "16 km ESE of Susitna North, Alaska", "depth": 44.5, "time_str": "2026-06-28 12:08"}, {"lon": -103.28, "lat": 32.033, "mag": 1.7, "place": "12 km SW of Jal, New Mexico", "depth": 1.7, "time_str": "2026-06-28 12:06"}, {"lon": -146.542, "lat": 61.147, "mag": 1.3, "place": "10 km W of Valdez, Alaska", "depth": 12.5, "time_str": "2026-06-28 12:02"}, {"lon": -152.834, "lat": 58.157, "mag": 2.0, "place": "11 km NNE of Aleneva, Alaska", "depth": 55.0, "time_str": "2026-06-28 11:59"}, {"lon": -117.699666666667, "lat": 35.8605, "mag": 0.68, "place": "20 km ESE of Little Lake, CA", "depth": 9.0, "time_str": "2026-06-28 11:50"}, {"lon": -119.442333333333, "lat": 34.9335, "mag": 1.51, "place": "14 km SSW of Maricopa, CA", "depth": 9.6, "time_str": "2026-06-28 11:47"}, {"lon": 128.695, "lat": -7.38, "mag": 4.5, "place": "225 km NE of Lospalos, Timor Leste", "depth": 165.5, "time_str": "2026-06-28 11:35"}, {"lon": -150.703, "lat": 61.251, "mag": 1.9, "place": "23 km ENE of Beluga, Alaska", "depth": 55.6, "time_str": "2026-06-28 11:30"}, {"lon": -150.441, "lat": 60.641, "mag": 1.3, "place": "21 km ENE of Sterling, Alaska", "depth": 49.1, "time_str": "2026-06-28 11:29"}, {"lon": -66.8773, "lat": -24.0562, "mag": 4.2, "place": "59 km WNW of San Antonio de los Cobres, Argentina", "depth": 206.6, "time_str": "2026-06-28 11:26"}, {"lon": -116.166666666667, "lat": 33.89, "mag": 1.92, "place": "19 km NNE of Indio, CA", "depth": 5.5, "time_str": "2026-06-28 11:22"}, {"lon": -122.803337097168, "lat": 38.7936668395996, "mag": 0.8, "place": "4 km WNW of The Geysers, CA", "depth": 3.7, "time_str": "2026-06-28 11:19"}, {"lon": -103.248, "lat": 32.012, "mag": 1.9, "place": "12 km SSW of Jal, New Mexico", "depth": 8.0, "time_str": "2026-06-28 11:10"}, {"lon": -159.812, "lat": 55.953, "mag": 1.4, "place": "21 km WNW of Ivanof Bay, Alaska", "depth": 12.7, "time_str": "2026-06-28 11:09"}, {"lon": -116.770166666667, "lat": 33.337, "mag": 0.69, "place": "9 km ESE of Palomar Observatory, CA", "depth": 15.2, "time_str": "2026-06-28 11:05"}, {"lon": 174.4645, "lat": -40.3938, "mag": 5.0, "place": "65 km W of Foxton Beach, New Zealand", "depth": 81.2, "time_str": "2026-06-28 11:04"}, {"lon": -116.637666666667, "lat": 33.13, "mag": 0.75, "place": "7 km NNW of Julian, CA", "depth": 3.9, "time_str": "2026-06-28 10:56"}, {"lon": -159.831, "lat": 55.916, "mag": 1.7, "place": "21 km W of Ivanof Bay, Alaska", "depth": 12.5, "time_str": "2026-06-28 10:55"}, {"lon": -117.5425, "lat": 35.7263333333333, "mag": 0.94, "place": "13 km WSW of Searles Valley, CA", "depth": 5.0, "time_str": "2026-06-28 10:49"}, {"lon": -122.78466796875, "lat": 38.8373336791992, "mag": 1.49, "place": "6 km WNW of Cobb, CA", "depth": 1.7, "time_str": "2026-06-28 10:48"}, {"lon": -121.082664489746, "lat": 36.4678344726562, "mag": 1.69, "place": "9 km SE of Pinnacles, CA", "depth": 6.3, "time_str": "2026-06-28 10:39"}, {"lon": -116.946, "lat": 33.448, "mag": 0.33, "place": "8 km W of Aguanga, CA", "depth": 10.2, "time_str": "2026-06-28 10:29"}, {"lon": -122.74666595459, "lat": 38.7883338928223, "mag": 1.06, "place": "1 km NE of The Geysers, CA", "depth": 1.6, "time_str": "2026-06-28 10:22"}, {"lon": -122.952667236328, "lat": 38.7751655578613, "mag": 0.83, "place": "7 km ESE of Cloverdale, CA", "depth": 7.6, "time_str": "2026-06-28 10:13"}, {"lon": -117.23, "lat": 34.0261666666667, "mag": 1.08, "place": "4 km SE of Loma Linda, CA", "depth": 11.3, "time_str": "2026-06-28 10:10"}, {"lon": -148.091, "lat": 62.526, "mag": 1.6, "place": "81 km NW of Eureka Roadhouse, Alaska", "depth": 61.6, "time_str": "2026-06-28 10:01"}, {"lon": -156.539, "lat": 56.871, "mag": 2.0, "place": "88 km SE of Ugashik, Alaska", "depth": 0.5, "time_str": "2026-06-28 09:53"}, {"lon": -68.352, "lat": 18.4056, "mag": 3.82, "place": "20 km SSE of Punta Cana, Dominican Republic", "depth": 158.0, "time_str": "2026-06-28 09:45"}, {"lon": -122.744499206543, "lat": 38.7803344726562, "mag": 1.17, "place": "1 km ENE of The Geysers, CA", "depth": 0.3, "time_str": "2026-06-28 09:38"}, {"lon": -68.3766, "lat": 10.4497, "mag": 4.3, "place": "19 km WSW of Mor\u00f3n, Venezuela", "depth": 10.0, "time_str": "2026-06-28 09:33"}, {"lon": -117.986166666667, "lat": 36.0795, "mag": 0.64, "place": "5 km NW of Coso Junction, CA", "depth": 6.2, "time_str": "2026-06-28 09:26"}, {"lon": -152.585, "lat": 59.426, "mag": 2.9, "place": "38 km WNW of Nanwalek, Alaska", "depth": 75.3, "time_str": "2026-06-28 09:25"}, {"lon": -155.278839111328, "lat": 19.4223327636719, "mag": 1.81, "place": "5 km WSW of Volcano, Hawaii", "depth": -1.1, "time_str": "2026-06-28 09:23"}, {"lon": -150.858, "lat": 60.465, "mag": 1.6, "place": "6 km SW of Funny River, Alaska", "depth": 61.9, "time_str": "2026-06-28 09:18"}, {"lon": -115.7729, "lat": 36.7333, "mag": 1.9, "place": "20 km NNW of Indian Springs, Nevada", "depth": 1.7, "time_str": "2026-06-28 08:57"}, {"lon": -68.4901, "lat": 10.6806, "mag": 4.5, "place": "20 km W of Boca de Aroa, Venezuela", "depth": 10.0, "time_str": "2026-06-28 08:46"}, {"lon": -149.197, "lat": 62.015, "mag": 1.0, "place": "30 km N of Fishhook, Alaska", "depth": 42.9, "time_str": "2026-06-28 08:42"}, {"lon": -76.2909, "lat": 5.1606, "mag": 4.4, "place": "29 km WSW of Pueblo Rico, Colombia", "depth": 94.4, "time_str": "2026-06-28 08:39"}, {"lon": 27.5651, "lat": -52.7331, "mag": 4.7, "place": "south of Africa", "depth": 10.0, "time_str": "2026-06-28 08:34"}, {"lon": -153.539, "lat": 59.317, "mag": 1.3, "place": "60 km ESE of Pope-Vannoy Landing, Alaska", "depth": 113.5, "time_str": "2026-06-28 08:29"}, {"lon": -116.6185, "lat": 33.4273333333333, "mag": 0.96, "place": "15 km SSE of Anza, CA", "depth": 9.7, "time_str": "2026-06-28 08:20"}, {"lon": -122.806503295898, "lat": 38.8255004882812, "mag": 1.1, "place": "7 km NW of The Geysers, CA", "depth": 2.4, "time_str": "2026-06-28 08:17"}, {"lon": -151.08, "lat": 61.688, "mag": 1.1, "place": "34 km WNW of Susitna, Alaska", "depth": 72.3, "time_str": "2026-06-28 08:05"}, {"lon": -123.264335632324, "lat": 39.3731651306152, "mag": 1.61, "place": "9 km ESE of Willits, CA", "depth": 0.4, "time_str": "2026-06-28 07:51"}, {"lon": -154.917, "lat": 58.284, "mag": 0.8, "place": "84 km NNW of Karluk, Alaska", "depth": 5.0, "time_str": "2026-06-28 07:48"}, {"lon": -155.322, "lat": 58.079, "mag": 0.8, "place": "76 km NW of Karluk, Alaska", "depth": 9.5, "time_str": "2026-06-28 07:43"}, {"lon": -147.0, "lat": 60.812, "mag": 1.6, "place": "18 km WSW of Tatitlek, Alaska", "depth": 28.7, "time_str": "2026-06-28 07:24"}, {"lon": 167.4024, "lat": -14.7852, "mag": 5.2, "place": "45 km NE of Port-Olry, Vanuatu", "depth": 160.3, "time_str": "2026-06-28 07:05"}, {"lon": -116.490333333333, "lat": 33.5063333333333, "mag": 0.57, "place": "18 km ESE of Anza, CA", "depth": 12.1, "time_str": "2026-06-28 07:05"}, {"lon": -123.231163024902, "lat": 39.3703346252441, "mag": 1.44, "place": "12 km ESE of Willits, CA", "depth": 6.6, "time_str": "2026-06-28 07:01"}, {"lon": -122.737998962402, "lat": 38.7868347167969, "mag": 0.96, "place": "2 km ENE of The Geysers, CA", "depth": 0.4, "time_str": "2026-06-28 07:00"}, {"lon": -116.078166666667, "lat": 33.2316666666667, "mag": 1.02, "place": "11 km NNE of Ocotillo Wells, CA", "depth": 9.7, "time_str": "2026-06-28 06:44"}, {"lon": -115.388666666667, "lat": 32.3183333333333, "mag": 1.58, "place": "19 km WSW of Delta, B.C., MX", "depth": 0.4, "time_str": "2026-06-28 06:24"}, {"lon": -151.959, "lat": 60.635, "mag": 2.5, "place": "35 km W of Salamatof, Alaska", "depth": 99.1, "time_str": "2026-06-28 06:11"}, {"lon": -121.950668334961, "lat": 37.771167755127, "mag": 1.39, "place": "3 km ESE of San Ramon, CA", "depth": 6.7, "time_str": "2026-06-28 06:08"}, {"lon": -122.84366607666, "lat": 38.8605003356934, "mag": 1.0, "place": "11 km WNW of Cobb, CA", "depth": 1.1, "time_str": "2026-06-28 05:58"}, {"lon": -63.7693, "lat": 19.6353, "mag": 3.8, "place": "173 km NNW of The Valley, Anguilla", "depth": 15.0, "time_str": "2026-06-28 05:58"}, {"lon": 142.3616, "lat": 40.2288, "mag": 4.5, "place": "48 km ENE of Noda, Japan", "depth": 51.6, "time_str": "2026-06-28 05:39"}, {"lon": -122.843330383301, "lat": 38.8603324890137, "mag": 1.09, "place": "11 km WNW of Cobb, CA", "depth": 1.4, "time_str": "2026-06-28 05:38"}, {"lon": -101.482, "lat": 32.074, "mag": 1.2, "place": "11 km WSW of Forsan, Texas", "depth": 3.3, "time_str": "2026-06-28 05:29"}, {"lon": -122.843002319336, "lat": 38.8596649169922, "mag": 1.25, "place": "11 km WNW of Cobb, CA", "depth": 0.9, "time_str": "2026-06-28 05:26"}, {"lon": -65.8206666666667, "lat": 19.4575, "mag": 3.26, "place": "113 km NNE of San Juan, Puerto Rico", "depth": 28.9, "time_str": "2026-06-28 05:26"}, {"lon": -117.528333333333, "lat": 33.7188333333333, "mag": 1.09, "place": "8 km NE of Trabuco Canyon, CA", "depth": 10.6, "time_str": "2026-06-28 05:04"}, {"lon": -119.100666666667, "lat": 35.0495, "mag": 1.5, "place": "20 km NW of Grapevine, CA", "depth": 15.7, "time_str": "2026-06-28 04:43"}, {"lon": -116.330833333333, "lat": 33.2566666666667, "mag": 0.98, "place": "4 km E of Borrego Springs, CA", "depth": 3.1, "time_str": "2026-06-28 04:34"}, {"lon": -116.6855, "lat": 33.6351666666667, "mag": 0.68, "place": "9 km N of Anza, CA", "depth": 16.2, "time_str": "2026-06-28 04:00"}, {"lon": -116.684166666667, "lat": 33.6358333333333, "mag": 0.61, "place": "9 km N of Anza, CA", "depth": 16.4, "time_str": "2026-06-28 04:00"}, {"lon": -122.842002868652, "lat": 38.818000793457, "mag": 0.72, "place": "9 km WNW of The Geysers, CA", "depth": 2.2, "time_str": "2026-06-28 03:55"}, {"lon": -117.803166666667, "lat": 35.3161666666667, "mag": 0.83, "place": "17 km WSW of Johannesburg, CA", "depth": 9.4, "time_str": "2026-06-28 03:45"}, {"lon": -102.167, "lat": 32.352, "mag": 1.8, "place": "34 km E of McKinney Acres, Texas", "depth": 4.2, "time_str": "2026-06-28 03:43"}, {"lon": -102.18, "lat": 32.352, "mag": 1.8, "place": "33 km E of McKinney Acres, Texas", "depth": 4.1, "time_str": "2026-06-28 03:43"}, {"lon": 95.4339, "lat": 38.0397, "mag": 4.6, "place": "244 km SSE of Dunhuang, China", "depth": 10.0, "time_str": "2026-06-28 03:39"}, {"lon": -117.816333333333, "lat": 35.3181666666667, "mag": 1.6, "place": "18 km WSW of Johannesburg, CA", "depth": 7.6, "time_str": "2026-06-28 03:38"}, {"lon": -122.736503601074, "lat": 38.7840003967285, "mag": 0.76, "place": "2 km ENE of The Geysers, CA", "depth": 1.9, "time_str": "2026-06-28 03:36"}, {"lon": -123.357666015625, "lat": 38.9500007629395, "mag": 1.56, "place": "7 km S of Boonville, CA", "depth": 3.9, "time_str": "2026-06-28 03:36"}, {"lon": -151.388, "lat": 60.129, "mag": 2.5, "place": "11 km S of Clam Gulch, Alaska", "depth": 53.1, "time_str": "2026-06-28 03:19"}, {"lon": 176.5173, "lat": 51.9528, "mag": 4.3, "place": "247 km ESE of Attu Station, Alaska", "depth": 54.9, "time_str": "2026-06-28 03:18"}, {"lon": -117.527166666667, "lat": 33.7003333333333, "mag": 1.03, "place": "7 km NE of Trabuco Canyon, CA", "depth": 6.1, "time_str": "2026-06-28 03:13"}, {"lon": -67.964, "lat": -31.5471, "mag": 4.4, "place": "32 km ENE of Caucete, Argentina", "depth": 109.7, "time_str": "2026-06-28 03:12"}, {"lon": -122.111335754395, "lat": 47.267333984375, "mag": 1.81618022918701, "place": "7 km S of Lake Morton-Berrydale, Washington", "depth": 21.0, "time_str": "2026-06-28 03:09"}, {"lon": -117.814833333333, "lat": 35.3063333333333, "mag": 1.12, "place": "18 km WSW of Johannesburg, CA", "depth": 8.6, "time_str": "2026-06-28 03:02"}, {"lon": 147.7078, "lat": -6.4393, "mag": 4.9, "place": "20 km NW of Finschhafen, Papua New Guinea", "depth": 73.1, "time_str": "2026-06-28 02:59"}, {"lon": -117.300166666667, "lat": 34.0905, "mag": 1.0, "place": "2 km NE of Colton, CA", "depth": 15.7, "time_str": "2026-06-28 02:55"}, {"lon": -153.196, "lat": 59.631, "mag": 1.8, "place": "54 km ESE of Pedro Bay, Alaska", "depth": 112.6, "time_str": "2026-06-28 02:53"}, {"lon": -116.717, "lat": 33.5305, "mag": 1.58, "place": "5 km SW of Anza, CA", "depth": 5.1, "time_str": "2026-06-28 02:46"}, {"lon": -103.01, "lat": 31.394, "mag": 1.8, "place": "16 km WNW of Grandfalls, Texas", "depth": 0.0, "time_str": "2026-06-28 02:36"}, {"lon": -158.06, "lat": 56.003, "mag": 2.1, "place": "38 km SSE of Chignik, Alaska", "depth": 64.7, "time_str": "2026-06-28 02:20"}, {"lon": -63.5041, "lat": 19.6633, "mag": 4.12, "place": "166 km NNW of The Valley, Anguilla", "depth": 59.0, "time_str": "2026-06-28 02:06"}, {"lon": -102.167, "lat": 32.352, "mag": 1.1, "place": "34 km E of McKinney Acres, Texas", "depth": 7.7, "time_str": "2026-06-28 02:06"}, {"lon": -118.005833333333, "lat": 34.4851666666667, "mag": 1.41, "place": "4 km SSW of Littlerock, CA", "depth": 9.4, "time_str": "2026-06-28 02:05"}, {"lon": -122.767669677734, "lat": 38.7869987487793, "mag": 1.03, "place": "1 km NW of The Geysers, CA", "depth": 2.9, "time_str": "2026-06-28 02:03"}, {"lon": -122.768997192383, "lat": 38.7861671447754, "mag": 1.74, "place": "1 km NW of The Geysers, CA", "depth": 2.6, "time_str": "2026-06-28 02:03"}, {"lon": -155.316833496094, "lat": 19.6843338012695, "mag": 1.81, "place": "24 km WSW of Wainaku, Hawaii", "depth": 26.0, "time_str": "2026-06-28 01:59"}, {"lon": -159.953, "lat": 55.741, "mag": 2.2, "place": "34 km WSW of Ivanof Bay, Alaska", "depth": 7.0, "time_str": "2026-06-28 01:53"}, {"lon": -102.065, "lat": 31.909, "mag": 1.1, "place": "9 km S of Midland, Texas", "depth": 6.6, "time_str": "2026-06-28 01:46"}, {"lon": -116.083833333333, "lat": 33.7853333333333, "mag": 2.09, "place": "14 km ENE of Indio, CA", "depth": 2.8, "time_str": "2026-06-28 01:44"}, {"lon": -159.204, "lat": 55.345, "mag": 2.1, "place": "63 km S of Perryville, Alaska", "depth": 5.5, "time_str": "2026-06-28 01:29"}, {"lon": -156.516662597656, "lat": 19.6746673583984, "mag": 2.62, "place": "54 km W of Kailua-Kona, Hawaii", "depth": 12.7, "time_str": "2026-06-28 01:25"}, {"lon": -124.833, "lat": 48.6358333333333, "mag": 2.31, "place": "33 km NNW of Neah Bay, Washington", "depth": 34.0, "time_str": "2026-06-28 01:11"}, {"lon": -122.767166137695, "lat": 38.8230018615723, "mag": 1.07, "place": "4 km W of Cobb, CA", "depth": 2.5, "time_str": "2026-06-28 01:11"}, {"lon": -122.807502746582, "lat": 38.8383331298828, "mag": 1.03, "place": "8 km WNW of Cobb, CA", "depth": 2.0, "time_str": "2026-06-28 01:08"}, {"lon": -122.808166503906, "lat": 38.8381652832031, "mag": 0.71, "place": "8 km WNW of Cobb, CA", "depth": 2.1, "time_str": "2026-06-28 01:06"}, {"lon": -146.917, "lat": 64.491, "mag": 1.6, "place": "3 km S of Salcha, Alaska", "depth": 6.5, "time_str": "2026-06-28 01:02"}, {"lon": -115.7417, "lat": 36.7244, "mag": 2.38, "place": "18 km NNW of Indian Springs, Nevada", "depth": 4.0, "time_str": "2026-06-28 00:39"}, {"lon": -122.808334350586, "lat": 38.8233337402344, "mag": 1.94, "place": "7 km NW of The Geysers, CA", "depth": 2.5, "time_str": "2026-06-28 00:33"}, {"lon": -122.80916595459, "lat": 38.8224983215332, "mag": 1.04, "place": "7 km NW of The Geysers, CA", "depth": 2.7, "time_str": "2026-06-28 00:29"}, {"lon": -122.807662963867, "lat": 38.8228340148926, "mag": 1.57, "place": "7 km NW of The Geysers, CA", "depth": 2.8, "time_str": "2026-06-28 00:23"}, {"lon": -159.913, "lat": 55.809, "mag": 2.2, "place": "28 km WSW of Ivanof Bay, Alaska", "depth": 10.4, "time_str": "2026-06-28 00:23"}, {"lon": -159.72, "lat": 55.85, "mag": 1.6, "place": "15 km WSW of Ivanof Bay, Alaska", "depth": 14.2, "time_str": "2026-06-28 00:09"}, {"lon": -122.80933380127, "lat": 38.8136672973633, "mag": 0.92, "place": "6 km NW of The Geysers, CA", "depth": 3.2, "time_str": "2026-06-28 00:07"}, {"lon": -178.855166666667, "lat": 51.7386666666667, "mag": 0.94, "place": "153 km W of Adak, Alaska", "depth": 25.4, "time_str": "2026-06-28 00:02"}, {"lon": -115.936, "lat": 32.8885, "mag": 1.44, "place": "18 km NNE of Ocotillo, CA", "depth": 9.3, "time_str": "2026-06-27 23:52"}, {"lon": -103.874, "lat": 31.509, "mag": 2.0, "place": "22 km NNW of Toyah, Texas", "depth": 2.2, "time_str": "2026-06-27 23:46"}, {"lon": -122.818336486816, "lat": 38.8320007324219, "mag": 0.69, "place": "8 km NW of The Geysers, CA", "depth": 1.9, "time_str": "2026-06-27 23:36"}, {"lon": 127.2767, "lat": -6.7268, "mag": 4.5, "place": "200 km N of Lospalos, Timor Leste", "depth": 399.0, "time_str": "2026-06-27 23:29"}, {"lon": -166.6285, "lat": 53.9, "mag": 0.9, "place": "5 km WNW of Dutch Harbor, Alaska", "depth": 8.2, "time_str": "2026-06-27 23:28"}, {"lon": -148.882, "lat": 62.881, "mag": 2.7, "place": "57 km S of Cantwell, Alaska", "depth": 11.2, "time_str": "2026-06-27 23:26"}, {"lon": -116.1975, "lat": 33.8096666666667, "mag": 1.16, "place": "10 km N of Indio, CA", "depth": 4.2, "time_str": "2026-06-27 23:24"}, {"lon": -146.389, "lat": 61.081, "mag": 0.8, "place": "5 km SSW of Valdez, Alaska", "depth": 15.6, "time_str": "2026-06-27 23:14"}, {"lon": -159.781, "lat": 55.772, "mag": 1.2, "place": "23 km SW of Ivanof Bay, Alaska", "depth": 5.0, "time_str": "2026-06-27 23:07"}, {"lon": -115.550333333333, "lat": 32.9496666666667, "mag": 2.25, "place": "4 km SSW of Brawley, CA", "depth": 7.8, "time_str": "2026-06-27 23:06"}, {"lon": -115.552, "lat": 32.9486666666667, "mag": 1.85, "place": "4 km SSW of Brawley, CA", "depth": 9.1, "time_str": "2026-06-27 23:04"}, {"lon": -117.7375, "lat": 35.895, "mag": 0.72, "place": "16 km ESE of Little Lake, CA", "depth": 8.7, "time_str": "2026-06-27 22:39"}, {"lon": -121.795997619629, "lat": 46.5783348083496, "mag": 1.50474762916565, "place": "10 km WSW of Packwood, Washington", "depth": 0.9, "time_str": "2026-06-27 22:37"}, {"lon": -122.761001586914, "lat": 38.7908325195312, "mag": 0.73, "place": "2 km NNW of The Geysers, CA", "depth": 1.4, "time_str": "2026-06-27 22:26"}, {"lon": -104.456, "lat": 31.63, "mag": 1.3, "place": "60 km S of Whites City, New Mexico", "depth": 4.1, "time_str": "2026-06-27 22:22"}, {"lon": -123.233497619629, "lat": 39.3766670227051, "mag": 1.48, "place": "11 km ESE of Willits, CA", "depth": 7.2, "time_str": "2026-06-27 22:20"}, {"lon": -155.205001831055, "lat": 19.2859992980957, "mag": 1.98, "place": "17 km S of Volcano, Hawaii", "depth": 6.5, "time_str": "2026-06-27 22:19"}, {"lon": -103.243, "lat": 32.005, "mag": 1.5, "place": "12 km SSW of Jal, New Mexico", "depth": 7.5, "time_str": "2026-06-27 22:18"}, {"lon": -151.071, "lat": 58.058, "mag": 2.0, "place": "84 km ENE of Kodiak, Alaska", "depth": 9.5, "time_str": "2026-06-27 22:15"}, {"lon": -168.078166666667, "lat": 53.3465, "mag": 1.08, "place": "69 km NE of Nikolski, Alaska", "depth": 4.5, "time_str": "2026-06-27 21:57"}, {"lon": -103.738, "lat": 32.078, "mag": 1.8, "place": "35 km ESE of Malaga, New Mexico", "depth": 7.2, "time_str": "2026-06-27 21:53"}, {"lon": -122.80249786377, "lat": 38.8161659240723, "mag": 0.91, "place": "6 km NW of The Geysers, CA", "depth": 1.6, "time_str": "2026-06-27 21:44"}, {"lon": -159.841, "lat": 55.749, "mag": 1.1, "place": "28 km SW of Ivanof Bay, Alaska", "depth": 5.0, "time_str": "2026-06-27 21:29"}, {"lon": -177.2895, "lat": 51.827, "mag": 0.61, "place": "45 km W of Adak, Alaska", "depth": 22.2, "time_str": "2026-06-27 21:28"}, {"lon": -104.136, "lat": 31.555, "mag": 1.4, "place": "42 km NW of Toyah, Texas", "depth": 3.9, "time_str": "2026-06-27 21:14"}, {"lon": 104.6082, "lat": -6.2095, "mag": 5.1, "place": "112 km SW of Bandar Lampung, Indonesia", "depth": 10.0, "time_str": "2026-06-27 21:10"}, {"lon": -116.79, "lat": 32.4966666666667, "mag": 1.38, "place": "17 km WSW of Tecate, B.C., MX", "depth": 2.2, "time_str": "2026-06-27 21:08"}, {"lon": -178.418833333333, "lat": 51.6136666666667, "mag": 2.17, "place": "126 km WSW of Adak, Alaska", "depth": 4.5, "time_str": "2026-06-27 21:05"}, {"lon": -159.905, "lat": 55.831, "mag": 1.1, "place": "27 km WSW of Ivanof Bay, Alaska", "depth": 5.0, "time_str": "2026-06-27 21:05"}, {"lon": -177.2878, "lat": -17.0646, "mag": 4.1, "place": "Fiji region", "depth": 404.4, "time_str": "2026-06-27 20:59"}, {"lon": -122.768997192383, "lat": 38.6613349914551, "mag": 1.1, "place": "10 km ENE of Healdsburg, CA", "depth": 6.0, "time_str": "2026-06-27 20:58"}, {"lon": -155.616165161133, "lat": 19.916166305542, "mag": 1.81, "place": "13 km SSE of Waimea, Hawaii", "depth": 26.2, "time_str": "2026-06-27 20:43"}, {"lon": -159.888, "lat": 55.878, "mag": 1.7, "place": "25 km W of Ivanof Bay, Alaska", "depth": 9.0, "time_str": "2026-06-27 20:36"}, {"lon": -152.021, "lat": 61.532, "mag": 2.9, "place": "60 km SSW of Skwentna, Alaska", "depth": 111.0, "time_str": "2026-06-27 20:31"}, {"lon": -67.1078333333333, "lat": 19.3498333333333, "mag": 3.12, "place": "94 km N of Isabela, Puerto Rico", "depth": 24.9, "time_str": "2026-06-27 20:26"}, {"lon": -155.304166666667, "lat": 19.4073333333333, "mag": 0.68, "place": "8 km WSW of Volcano, Hawaii", "depth": 0.8, "time_str": "2026-06-27 20:26"}, {"lon": 142.4136, "lat": 40.206, "mag": 5.8, "place": "51 km ENE of Noda, Japan", "depth": 34.0, "time_str": "2026-06-27 20:21"}, {"lon": -155.289333333333, "lat": 19.4063333333333, "mag": 0.86, "place": "7 km SW of Volcano, Hawaii", "depth": 0.1, "time_str": "2026-06-27 20:19"}, {"lon": -122.877502441406, "lat": 38.8414993286133, "mag": 1.06, "place": "13 km NW of The Geysers, CA", "depth": 2.4, "time_str": "2026-06-27 20:13"}, {"lon": -151.377, "lat": 60.133, "mag": 2.0, "place": "10 km S of Clam Gulch, Alaska", "depth": 52.6, "time_str": "2026-06-27 20:02"}, {"lon": -122.879501342773, "lat": 38.841667175293, "mag": 0.69, "place": "13 km ENE of Cloverdale, CA", "depth": 2.0, "time_str": "2026-06-27 19:51"}]}]}</script>
+</div>
+<div class="bslib-grid-item html-fill-item tab-content bslib-grid" data-layout="fill" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div id="map" class="dashboard-page tab-pane show active html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-map">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 20fr) minmax(3em, 72fr) minmax(3em, 8fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr) minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card valuebox cell html-fill-item html-fill-container bslib-card bslib-value-box showcase-left-center" data-bslib-card-init="" data-require-bs-caller="card()" style=" background: #1f3a5f;">
+<div class="card-body html-fill-item html-fill-container">
+<div data-icon="activity" class="html-fill-item html-fill-container value-box-grid">
+<div class="value-box-showcase html-fill-item html-fill-container">
+
+<i class="bi bi-activity"></i></div>
+<div class="value-box-area">
+<p class="value-box-title">
+Quakes (24h)
+</p>
+<p class="value-box-value">
+218
+</p>
+</div>
+</div>
+</div>
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card valuebox cell html-fill-item html-fill-container bslib-card bslib-value-box showcase-left-center" data-bslib-card-init="" data-require-bs-caller="card()" style=" background: #a8482b;">
+<div class="card-body html-fill-item html-fill-container">
+<div data-icon="graph-up-arrow" class="html-fill-item html-fill-container value-box-grid">
+<div class="value-box-showcase html-fill-item html-fill-container">
+
+<i class="bi bi-graph-up-arrow"></i></div>
+<div class="value-box-area">
+<p class="value-box-title">
+Strongest (24h)
+</p>
+<p class="value-box-value">
+M5.8
+</p>
+</div>
+</div>
+</div>
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card valuebox cell html-fill-item html-fill-container bslib-card bslib-value-box showcase-left-center" data-bslib-card-init="" data-require-bs-caller="card()" style=" background: #d97706;">
+<div class="card-body html-fill-item html-fill-container">
+<div data-icon="exclamation-triangle" class="html-fill-item html-fill-container value-box-grid">
+<div class="value-box-showcase html-fill-item html-fill-container">
+
+<i class="bi bi-exclamation-triangle"></i></div>
+<div class="value-box-area">
+<p class="value-box-title">
+M4.5+ (24h)
+</p>
+<p class="value-box-value">
+18
+</p>
+</div>
+</div>
+</div>
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card valuebox cell html-fill-item html-fill-container bslib-card bslib-value-box showcase-left-center" data-bslib-card-init="" data-require-bs-caller="card()" style=" background: #15803d;">
+<div class="card-body html-fill-item html-fill-container">
+<div data-icon="star" class="html-fill-item html-fill-container value-box-grid">
+<div class="value-box-showcase html-fill-item html-fill-container">
+
+<i class="bi bi-star"></i></div>
+<div class="value-box-area">
+<p class="value-box-title">
+Significant (7d)
+</p>
+<p class="value-box-value">
+6
+</p>
+</div>
+</div>
+</div>
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div><div class="card valuebox cell html-fill-item html-fill-container bslib-card bslib-value-box showcase-left-center" data-bslib-card-init="" data-require-bs-caller="card()" style=" background: #16202e;">
+<div class="card-body html-fill-item html-fill-container">
+<div data-icon="arrow-down-circle" class="html-fill-item html-fill-container value-box-grid">
+<div class="value-box-showcase html-fill-item html-fill-container">
+
+<i class="bi bi-arrow-down-circle"></i></div>
+<div class="value-box-area">
+<p class="value-box-title">
+Deepest (km)
+</p>
+<p class="value-box-value">
+404
+</p>
+</div>
+</div>
+</div>
+<script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-title="Live world map — last 24h (dot size = magnitude · color = depth)" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+Live world map — last 24h (dot size = magnitude · color = depth)
+</span></div></div>
+<div class="cell card-body html-fill-item html-fill-container">
+<div class="code-copy-outer-scaffold html-fill-item html-fill-container"><div class="sourceCode cell-code hidden html-fill-item html-fill-container" id="cb1" data-startfrom="74" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 73;"><span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>d3 <span class="op">=</span> <span class="pp">require</span>(<span class="st">"d3@7"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display html-fill-item html-fill-container">
+<div id="ojs-cell-1" data-nodetype="declaration" class="html-fill-item html-fill-container">
+
+</div>
+</div>
+</div>
+<div class="cell card-body html-fill-item html-fill-container">
+<div class="code-copy-outer-scaffold html-fill-item html-fill-container"><div class="sourceCode cell-code hidden html-fill-item html-fill-container" id="cb2" data-startfrom="79" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 78;"><span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>topojson <span class="op">=</span> <span class="pp">require</span>(<span class="st">"topojson-client@3"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display html-fill-item html-fill-container">
+<div id="ojs-cell-2" data-nodetype="declaration" class="html-fill-item html-fill-container">
+
+</div>
+</div>
+</div>
+<div class="cell card-body html-fill-item html-fill-container">
+<div class="code-copy-outer-scaffold html-fill-item html-fill-container"><div class="sourceCode cell-code hidden html-fill-item html-fill-container" id="cb3" data-startfrom="84" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 83;"><span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>land <span class="op">=</span> {</span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> world <span class="op">=</span> <span class="cf">await</span> d3<span class="op">.</span><span class="fu">json</span>(<span class="st">"https://cdn.jsdelivr.net/npm/world-atlas@2/land-110m.json"</span>)<span class="op">;</span></span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> topojson<span class="op">.</span><span class="fu">feature</span>(world<span class="op">,</span> world<span class="op">.</span><span class="at">objects</span><span class="op">.</span><span class="at">land</span>)<span class="op">;</span></span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display html-fill-item html-fill-container">
+<div id="ojs-cell-3" data-nodetype="declaration" class="html-fill-item html-fill-container">
+
+</div>
+</div>
+</div>
+<div class="cell card-body html-fill-item html-fill-container">
+<div class="code-copy-outer-scaffold html-fill-item html-fill-container"><div class="sourceCode cell-code hidden html-fill-item html-fill-container" id="cb4" data-startfrom="92" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 91;"><span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>  <span class="dt">width</span><span class="op">:</span> <span class="dv">1100</span><span class="op">,</span></span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">540</span><span class="op">,</span></span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a>  <span class="dt">projection</span><span class="op">:</span> <span class="st">"equal-earth"</span><span class="op">,</span></span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a>  <span class="dt">r</span><span class="op">:</span> { <span class="dt">range</span><span class="op">:</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">14</span>] }<span class="op">,</span></span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a>  <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a>    <span class="dt">type</span><span class="op">:</span> <span class="st">"linear"</span><span class="op">,</span> <span class="dt">scheme</span><span class="op">:</span> <span class="st">"YlOrRd"</span><span class="op">,</span> <span class="dt">reverse</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a>    <span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="dv">300</span>]<span class="op">,</span> <span class="dt">label</span><span class="op">:</span> <span class="st">"Depth (km)"</span><span class="op">,</span> <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">sphere</span>({ <span class="dt">fill</span><span class="op">:</span> <span class="st">"#eef1f6"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#cbd3df"</span> })<span class="op">,</span></span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">geo</span>(land<span class="op">,</span> { <span class="dt">fill</span><span class="op">:</span> <span class="st">"#e3ddcf"</span><span class="op">,</span> <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#cdbfa5"</span> })<span class="op">,</span></span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">dot</span>(quakes<span class="op">,</span> {</span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> <span class="st">"lon"</span><span class="op">,</span> <span class="dt">y</span><span class="op">:</span> <span class="st">"lat"</span><span class="op">,</span> <span class="dt">r</span><span class="op">:</span> <span class="st">"mag"</span><span class="op">,</span> <span class="dt">fill</span><span class="op">:</span> <span class="st">"depth"</span><span class="op">,</span></span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a>      <span class="dt">stroke</span><span class="op">:</span> <span class="st">"#fff"</span><span class="op">,</span> <span class="dt">strokeWidth</span><span class="op">:</span> <span class="fl">0.4</span><span class="op">,</span> <span class="dt">strokeOpacity</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span> <span class="dt">fillOpacity</span><span class="op">:</span> <span class="fl">0.68</span><span class="op">,</span></span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a>      <span class="dt">sort</span><span class="op">:</span> <span class="st">"mag"</span><span class="op">,</span>  <span class="co">// draw stronger quakes on top so they aren't buried in clusters</span></span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a>      <span class="dt">title</span><span class="op">:</span> d <span class="kw">=&gt;</span> <span class="vs">`M</span><span class="sc">${</span>d<span class="op">.</span><span class="at">mag</span><span class="sc">}</span><span class="vs"> · </span><span class="sc">${</span>d<span class="op">.</span><span class="at">place</span><span class="sc">}\n${</span>d<span class="op">.</span><span class="at">depth</span><span class="sc">}</span><span class="vs"> km deep · </span><span class="sc">${</span>d<span class="op">.</span><span class="at">time_str</span><span class="sc">}</span><span class="vs"> UTC`</span><span class="op">,</span></span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a>      <span class="dt">tip</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a>  ]</span>
+<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display html-fill-item html-fill-container">
+<div id="ojs-cell-4" data-nodetype="expression" class="html-fill-item html-fill-container">
+
+</div>
+</div>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<p><strong>Source:</strong> USGS <code>/earthquakes/feed/v1.0/summary/all_day.geojson</code> (public, no auth) — <a href="https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson">open the raw JSON</a> · <strong>Data as of:</strong> 2026-06-28 19:49 UTC · <strong>Code:</strong> <a href="https://github.com/ronaldmego/quake-radar">github.com/ronaldmego/quake-radar</a></p>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div>
+</div>
+<div id="earthquakes" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-earthquakes">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 92fr) minmax(3em, 8fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card tabset html-fill-item html-fill-container bslib-card" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header dashboard-card-no-title bslib-navs-card-title">
+
+<ul class="nav nav-tabs card-header-tabs" role="tablist" data-tabsetid="card-tabset-8"><li class="nav-item" role="presentation"><a href="#card-tabset-8-1" role="tab" data-toggle="tab" data-bs-toggle="tab" data-value="Recent" aria-selected="true" class="nav-link active">Recent</a></li><li class="nav-item" role="presentation"><a href="#card-tabset-8-2" role="tab" data-toggle="tab" data-bs-toggle="tab" data-value="Strongest (24h)" aria-selected="false" class="nav-link">Strongest (24h)</a></li><li class="nav-item" role="presentation"><a href="#card-tabset-8-3" role="tab" data-toggle="tab" data-bs-toggle="tab" data-value="Significant (7d)" aria-selected="false" class="nav-link">Significant (7d)</a></li><li class="nav-item" role="presentation"><a href="#card-tabset-8-4" role="tab" data-toggle="tab" data-bs-toggle="tab" data-value="Catalog — search &amp; sort" aria-selected="false" class="nav-link">Catalog — search &amp; sort</a></li></ul></div>
+
+
+
+
+<div class="tab-content html-fill-item html-fill-container" data-tabset-id="card-tabset-8"><div class="tab-pane active show html-fill-item html-fill-container" role="tabpanel" id="card-tabset-8-1"><div class="card-body html-fill-item html-fill-container" data-title="Recent">
+<div class="cell-output cell-output-display html-fill-item html-fill-container" data-execution_count="8">
+<div id="sznakfjsmd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;" class="html-fill-item html-fill-container">
+<style>
+#sznakfjsmd table {
+          font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+
+#sznakfjsmd thead, tbody, tfoot, tr, td, th { border-style: none; }
+ tr { background-color: transparent; }
+#sznakfjsmd p { margin: 0; padding: 0; }
+ #sznakfjsmd .gt_table { display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 13px; font-weight: normal; font-style: normal; background-color: #faf7f1; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; }
+ #sznakfjsmd .gt_caption { padding-top: 4px; padding-bottom: 4px; }
+ #sznakfjsmd .gt_title { color: #333333; font-size: 20px; font-weight: 600; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; border-bottom-color: #faf7f1; border-bottom-width: 0; }
+ #sznakfjsmd .gt_subtitle { color: #333333; font-size: 13px; font-weight: initial; padding-top: 3px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top-color: #faf7f1; border-top-width: 0; }
+ #sznakfjsmd .gt_heading { background-color: #faf7f1; text-align: center; border-bottom-color: #faf7f1; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #sznakfjsmd .gt_bottom_border { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
+ #sznakfjsmd .gt_col_headings { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #sznakfjsmd .gt_col_heading { color: #FFFFFF; background-color: #1f3a5f; font-size: 100%; font-weight: 600; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; }
+ #sznakfjsmd .gt_column_spanner_outer { color: #FFFFFF; background-color: #1f3a5f; font-size: 100%; font-weight: 600; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; padding-right: 4px; }
+ #sznakfjsmd .gt_column_spanner_outer:first-child { padding-left: 0; }
+ #sznakfjsmd .gt_column_spanner_outer:last-child { padding-right: 0; }
+ #sznakfjsmd .gt_column_spanner { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%; }
+ #sznakfjsmd .gt_spanner_row { border-bottom-style: hidden; }
+ #sznakfjsmd .gt_group_heading { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; color: #333333; background-color: #faf7f1; font-size: 100%; font-weight: initial; text-transform: inherit; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; text-align: left; }
+ #sznakfjsmd .gt_empty_group_heading { padding: 0.5px; color: #333333; background-color: #faf7f1; font-size: 100%; font-weight: initial; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: middle; }
+ #sznakfjsmd .gt_from_md> :first-child { margin-top: 0; }
+ #sznakfjsmd .gt_from_md> :last-child { margin-bottom: 0; }
+ #sznakfjsmd .gt_row { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; }
+ #sznakfjsmd .gt_stub { color: #333333; background-color: #faf7f1; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; }
+ #sznakfjsmd .gt_stub_row_group { color: #333333; background-color: #faf7f1; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; vertical-align: top; }
+ #sznakfjsmd .gt_row_group_first td { border-top-width: 2px; }
+ #sznakfjsmd .gt_row_group_first th { border-top-width: 2px; }
+ #sznakfjsmd .gt_striped { color: #333333; background-color: #F4F4F4; }
+ #sznakfjsmd .gt_table_body { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
+ #sznakfjsmd .gt_summary_row { color: #333333; background-color: #faf7f1; text-transform: inherit; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; }
+ #sznakfjsmd .gt_first_summary_row { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; }
+ #sznakfjsmd .gt_last_summary_row_top { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
+ #sznakfjsmd .gt_grand_summary_row { color: #333333; background-color: #faf7f1; text-transform: inherit; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; }
+ #sznakfjsmd .gt_first_grand_summary_row_bottom { border-top-style: double; border-top-width: 6px; border-top-color: #D3D3D3; }
+ #sznakfjsmd .gt_last_grand_summary_row_top { border-bottom-style: double; border-bottom-width: 6px; border-bottom-color: #D3D3D3; }
+ #sznakfjsmd .gt_sourcenotes { color: #333333; background-color: #faf7f1; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
+ #sznakfjsmd .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
+ #sznakfjsmd .gt_left { text-align: left; }
+ #sznakfjsmd .gt_center { text-align: center; }
+ #sznakfjsmd .gt_right { text-align: right; font-variant-numeric: tabular-nums; }
+ #sznakfjsmd .gt_font_normal { font-weight: normal; }
+ #sznakfjsmd .gt_font_bold { font-weight: bold; }
+ #sznakfjsmd .gt_font_italic { font-style: italic; }
+ #sznakfjsmd .gt_super { font-size: 65%; }
+ #sznakfjsmd .gt_footnotes { color: font-color(#faf7f1); background-color: #faf7f1; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
+ #sznakfjsmd .gt_footnote { margin: 0px; font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; }
+ #sznakfjsmd .gt_sourcenotes { color: #333333; background-color: #faf7f1; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
+ #sznakfjsmd .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
+ #sznakfjsmd .gt_footnote_marks { font-size: 75%; vertical-align: 0.4em; position: initial; }
+ #sznakfjsmd .gt_asterisk { font-size: 100%; vertical-align: 0; }
+ 
+</style>
+
+<table class="gt_table caption-top table" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="6" class="gt_heading gt_title gt_font_normal">Most recent earthquakes</td>
+</tr>
+<tr class="gt_heading even">
+<td colspan="6" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Latest events worldwide, newest first (last 24h)</td>
+</tr>
+<tr class="gt_col_headings header">
+<th id="mag_disp" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Mag</th>
+<th id="place" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Place</th>
+<th id="depth_disp" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Depth</th>
+<th id="alert" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">PAGER</th>
+<th id="time_str" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Time (UTC)</th>
+<th id="details" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Source</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_right" style="color: #a8482b; font-weight: 700">M1.9</td>
+<td class="gt_row gt_left" style="color: #1f3a5f; font-weight: 600">55 km SW of Karluk, Alaska</td>
+<td class="gt_row gt_right">62 km</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_right">2026-06-28 19:42</td>
+<td class="gt_row gt_left"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/aka2026mshijs">USGS ↗</a></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right gt_striped" style="color: #a8482b; font-weight: 700">M2.4</td>
+<td class="gt_row gt_left gt_striped" style="color: #1f3a5f; font-weight: 600">29 km SSW of Alamo, Nevada</td>
+<td class="gt_row gt_right gt_striped">3 km</td>
+<td class="gt_row gt_center gt_striped">—</td>
+<td class="gt_row gt_right gt_striped">2026-06-28 19:30</td>
+<td class="gt_row gt_left gt_striped"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/nn00920879">USGS ↗</a></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" style="color: #a8482b; font-weight: 700">M2.1</td>
+<td class="gt_row gt_left" style="color: #1f3a5f; font-weight: 600">33 km SSW of Alamo, Nevada</td>
+<td class="gt_row gt_right">7 km</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_right">2026-06-28 19:27</td>
+<td class="gt_row gt_left"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/nn00920876">USGS ↗</a></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right gt_striped" style="color: #a8482b; font-weight: 700">M4.6</td>
+<td class="gt_row gt_left gt_striped" style="color: #1f3a5f; font-weight: 600">63 km WNW of Catuday, Philippines</td>
+<td class="gt_row gt_right gt_striped">10 km</td>
+<td class="gt_row gt_center gt_striped">—</td>
+<td class="gt_row gt_right gt_striped">2026-06-28 19:25</td>
+<td class="gt_row gt_left gt_striped"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000t8v2">USGS ↗</a></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" style="color: #a8482b; font-weight: 700">M2.7</td>
+<td class="gt_row gt_left" style="color: #1f3a5f; font-weight: 600">36 km NW of Willow, Alaska</td>
+<td class="gt_row gt_right">27 km</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_right">2026-06-28 19:23</td>
+<td class="gt_row gt_left"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/aka2026msgsis">USGS ↗</a></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right gt_striped" style="color: #a8482b; font-weight: 700">M1.6</td>
+<td class="gt_row gt_left gt_striped" style="color: #1f3a5f; font-weight: 600">25 km NNW of Fishhook, Alaska</td>
+<td class="gt_row gt_right gt_striped">4 km</td>
+<td class="gt_row gt_center gt_striped">—</td>
+<td class="gt_row gt_right gt_striped">2026-06-28 19:20</td>
+<td class="gt_row gt_left gt_striped"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/aka2026msgpfi">USGS ↗</a></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" style="color: #a8482b; font-weight: 700">M2.2</td>
+<td class="gt_row gt_left" style="color: #1f3a5f; font-weight: 600">7 km E of La Parguera, Puerto Rico</td>
+<td class="gt_row gt_right">14 km</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_right">2026-06-28 19:12</td>
+<td class="gt_row gt_left"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/pr71521828">USGS ↗</a></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right gt_striped" style="color: #a8482b; font-weight: 700">M3.3</td>
+<td class="gt_row gt_left gt_striped" style="color: #1f3a5f; font-weight: 600">95 km SSE of King Cove, Alaska</td>
+<td class="gt_row gt_right gt_striped">35 km</td>
+<td class="gt_row gt_center gt_striped">—</td>
+<td class="gt_row gt_right gt_striped">2026-06-28 19:10</td>
+<td class="gt_row gt_left gt_striped"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000t8uw">USGS ↗</a></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" style="color: #a8482b; font-weight: 700">M5.0</td>
+<td class="gt_row gt_left" style="color: #1f3a5f; font-weight: 600">68 km WNW of Catuday, Philippines</td>
+<td class="gt_row gt_right">10 km</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_right">2026-06-28 19:09</td>
+<td class="gt_row gt_left"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000t8ux">USGS ↗</a></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right gt_striped" style="color: #a8482b; font-weight: 700">M1.1</td>
+<td class="gt_row gt_left gt_striped" style="color: #1f3a5f; font-weight: 600">6 km NNW of The Geysers, CA</td>
+<td class="gt_row gt_right gt_striped">1 km</td>
+<td class="gt_row gt_center gt_striped">—</td>
+<td class="gt_row gt_right gt_striped">2026-06-28 19:04</td>
+<td class="gt_row gt_left gt_striped"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/nc75385901">USGS ↗</a></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" style="color: #a8482b; font-weight: 700">M1.1</td>
+<td class="gt_row gt_left" style="color: #1f3a5f; font-weight: 600">7 km NW of The Geysers, CA</td>
+<td class="gt_row gt_right">2 km</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_right">2026-06-28 18:53</td>
+<td class="gt_row gt_left"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/nc75385896">USGS ↗</a></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right gt_striped" style="color: #a8482b; font-weight: 700">M1.3</td>
+<td class="gt_row gt_left gt_striped" style="color: #1f3a5f; font-weight: 600">8 km ENE of Fox, Alaska</td>
+<td class="gt_row gt_right gt_striped">4 km</td>
+<td class="gt_row gt_center gt_striped">—</td>
+<td class="gt_row gt_right gt_striped">2026-06-28 18:49</td>
+<td class="gt_row gt_left gt_striped"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/aka2026msfoxm">USGS ↗</a></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" style="color: #a8482b; font-weight: 700">M4.7</td>
+<td class="gt_row gt_left" style="color: #1f3a5f; font-weight: 600">39 km SW of Kandrian, Papua New Guinea</td>
+<td class="gt_row gt_right">30 km</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_right">2026-06-28 18:45</td>
+<td class="gt_row gt_left"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000t8uv">USGS ↗</a></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right gt_striped" style="color: #a8482b; font-weight: 700">M4.6</td>
+<td class="gt_row gt_left gt_striped" style="color: #1f3a5f; font-weight: 600">21 km WNW of Djelfa, Algeria</td>
+<td class="gt_row gt_right gt_striped">10 km</td>
+<td class="gt_row gt_center gt_striped">—</td>
+<td class="gt_row gt_right gt_striped">2026-06-28 18:37</td>
+<td class="gt_row gt_left gt_striped"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000t8ut">USGS ↗</a></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" style="color: #a8482b; font-weight: 700">M0.8</td>
+<td class="gt_row gt_left" style="color: #1f3a5f; font-weight: 600">46 km WNW of Mentone, Texas</td>
+<td class="gt_row gt_right">0 km</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_right">2026-06-28 18:32</td>
+<td class="gt_row gt_left"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/tx2026mqedms">USGS ↗</a></td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_sourcenotes odd">
+<td colspan="6" class="gt_sourcenote"><span class="gt_from_md">PAGER = USGS impact estimate (green→red) · Data: <a href="https://earthquake.usgs.gov/earthquakes/">USGS Earthquake Hazards</a></span></td>
+</tr>
+</tfoot>
+
+</table>
+
+
+</div>
+</div>
+</div></div><div class="tab-pane html-fill-item html-fill-container" role="tabpanel" id="card-tabset-8-2"><div class="card-body html-fill-item html-fill-container" data-title="Strongest (24h)">
+<div class="cell-output cell-output-display html-fill-item html-fill-container" data-execution_count="9">
+<div id="jxhfqthxev" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;" class="html-fill-item html-fill-container">
+<style>
+#jxhfqthxev table {
+          font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+
+#jxhfqthxev thead, tbody, tfoot, tr, td, th { border-style: none; }
+ tr { background-color: transparent; }
+#jxhfqthxev p { margin: 0; padding: 0; }
+ #jxhfqthxev .gt_table { display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 13px; font-weight: normal; font-style: normal; background-color: #faf7f1; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; }
+ #jxhfqthxev .gt_caption { padding-top: 4px; padding-bottom: 4px; }
+ #jxhfqthxev .gt_title { color: #333333; font-size: 20px; font-weight: 600; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; border-bottom-color: #faf7f1; border-bottom-width: 0; }
+ #jxhfqthxev .gt_subtitle { color: #333333; font-size: 13px; font-weight: initial; padding-top: 3px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top-color: #faf7f1; border-top-width: 0; }
+ #jxhfqthxev .gt_heading { background-color: #faf7f1; text-align: center; border-bottom-color: #faf7f1; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #jxhfqthxev .gt_bottom_border { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
+ #jxhfqthxev .gt_col_headings { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #jxhfqthxev .gt_col_heading { color: #FFFFFF; background-color: #1f3a5f; font-size: 100%; font-weight: 600; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; }
+ #jxhfqthxev .gt_column_spanner_outer { color: #FFFFFF; background-color: #1f3a5f; font-size: 100%; font-weight: 600; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; padding-right: 4px; }
+ #jxhfqthxev .gt_column_spanner_outer:first-child { padding-left: 0; }
+ #jxhfqthxev .gt_column_spanner_outer:last-child { padding-right: 0; }
+ #jxhfqthxev .gt_column_spanner { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%; }
+ #jxhfqthxev .gt_spanner_row { border-bottom-style: hidden; }
+ #jxhfqthxev .gt_group_heading { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; color: #333333; background-color: #faf7f1; font-size: 100%; font-weight: initial; text-transform: inherit; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; text-align: left; }
+ #jxhfqthxev .gt_empty_group_heading { padding: 0.5px; color: #333333; background-color: #faf7f1; font-size: 100%; font-weight: initial; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: middle; }
+ #jxhfqthxev .gt_from_md> :first-child { margin-top: 0; }
+ #jxhfqthxev .gt_from_md> :last-child { margin-bottom: 0; }
+ #jxhfqthxev .gt_row { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; }
+ #jxhfqthxev .gt_stub { color: #333333; background-color: #faf7f1; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; }
+ #jxhfqthxev .gt_stub_row_group { color: #333333; background-color: #faf7f1; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; vertical-align: top; }
+ #jxhfqthxev .gt_row_group_first td { border-top-width: 2px; }
+ #jxhfqthxev .gt_row_group_first th { border-top-width: 2px; }
+ #jxhfqthxev .gt_striped { color: #333333; background-color: #F4F4F4; }
+ #jxhfqthxev .gt_table_body { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
+ #jxhfqthxev .gt_summary_row { color: #333333; background-color: #faf7f1; text-transform: inherit; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; }
+ #jxhfqthxev .gt_first_summary_row { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; }
+ #jxhfqthxev .gt_last_summary_row_top { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
+ #jxhfqthxev .gt_grand_summary_row { color: #333333; background-color: #faf7f1; text-transform: inherit; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; }
+ #jxhfqthxev .gt_first_grand_summary_row_bottom { border-top-style: double; border-top-width: 6px; border-top-color: #D3D3D3; }
+ #jxhfqthxev .gt_last_grand_summary_row_top { border-bottom-style: double; border-bottom-width: 6px; border-bottom-color: #D3D3D3; }
+ #jxhfqthxev .gt_sourcenotes { color: #333333; background-color: #faf7f1; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
+ #jxhfqthxev .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
+ #jxhfqthxev .gt_left { text-align: left; }
+ #jxhfqthxev .gt_center { text-align: center; }
+ #jxhfqthxev .gt_right { text-align: right; font-variant-numeric: tabular-nums; }
+ #jxhfqthxev .gt_font_normal { font-weight: normal; }
+ #jxhfqthxev .gt_font_bold { font-weight: bold; }
+ #jxhfqthxev .gt_font_italic { font-style: italic; }
+ #jxhfqthxev .gt_super { font-size: 65%; }
+ #jxhfqthxev .gt_footnotes { color: font-color(#faf7f1); background-color: #faf7f1; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
+ #jxhfqthxev .gt_footnote { margin: 0px; font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; }
+ #jxhfqthxev .gt_sourcenotes { color: #333333; background-color: #faf7f1; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
+ #jxhfqthxev .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
+ #jxhfqthxev .gt_footnote_marks { font-size: 75%; vertical-align: 0.4em; position: initial; }
+ #jxhfqthxev .gt_asterisk { font-size: 100%; vertical-align: 0; }
+ 
+</style>
+
+<table class="gt_table caption-top table" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="6" class="gt_heading gt_title gt_font_normal">Strongest in the last 24h</td>
+</tr>
+<tr class="gt_heading even">
+<td colspan="6" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Same window, ranked by magnitude</td>
+</tr>
+<tr class="gt_col_headings header">
+<th id="mag_disp" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Mag</th>
+<th id="place" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Place</th>
+<th id="depth_disp" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Depth</th>
+<th id="alert" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">PAGER</th>
+<th id="time_str" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Time (UTC)</th>
+<th id="details" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Source</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_right" style="color: #a8482b; font-weight: 700">M5.8</td>
+<td class="gt_row gt_left" style="color: #1f3a5f; font-weight: 600">51 km ENE of Noda, Japan</td>
+<td class="gt_row gt_right">34 km</td>
+<td class="gt_row gt_center">green</td>
+<td class="gt_row gt_right">2026-06-27 20:21</td>
+<td class="gt_row gt_left"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000t8qd">USGS ↗</a></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right gt_striped" style="color: #a8482b; font-weight: 700">M5.2</td>
+<td class="gt_row gt_left gt_striped" style="color: #1f3a5f; font-weight: 600">8 km WNW of Changning, China</td>
+<td class="gt_row gt_right gt_striped">10 km</td>
+<td class="gt_row gt_center gt_striped">—</td>
+<td class="gt_row gt_right gt_striped">2026-06-28 16:12</td>
+<td class="gt_row gt_left gt_striped"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000t8u3">USGS ↗</a></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" style="color: #a8482b; font-weight: 700">M5.2</td>
+<td class="gt_row gt_left" style="color: #1f3a5f; font-weight: 600">45 km NE of Port-Olry, Vanuatu</td>
+<td class="gt_row gt_right">160 km</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_right">2026-06-28 07:05</td>
+<td class="gt_row gt_left"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000t8sl">USGS ↗</a></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right gt_striped" style="color: #a8482b; font-weight: 700">M5.1</td>
+<td class="gt_row gt_left gt_striped" style="color: #1f3a5f; font-weight: 600">112 km SW of Bandar Lampung, Indonesia</td>
+<td class="gt_row gt_right gt_striped">10 km</td>
+<td class="gt_row gt_center gt_striped">—</td>
+<td class="gt_row gt_right gt_striped">2026-06-27 21:10</td>
+<td class="gt_row gt_left gt_striped"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000t8qv">USGS ↗</a></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" style="color: #a8482b; font-weight: 700">M5.0</td>
+<td class="gt_row gt_left" style="color: #1f3a5f; font-weight: 600">65 km W of Foxton Beach, New Zealand</td>
+<td class="gt_row gt_right">81 km</td>
+<td class="gt_row gt_center">green</td>
+<td class="gt_row gt_right">2026-06-28 11:04</td>
+<td class="gt_row gt_left"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000t8t3">USGS ↗</a></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right gt_striped" style="color: #a8482b; font-weight: 700">M5.0</td>
+<td class="gt_row gt_left gt_striped" style="color: #1f3a5f; font-weight: 600">68 km WNW of Catuday, Philippines</td>
+<td class="gt_row gt_right gt_striped">10 km</td>
+<td class="gt_row gt_center gt_striped">—</td>
+<td class="gt_row gt_right gt_striped">2026-06-28 19:09</td>
+<td class="gt_row gt_left gt_striped"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000t8ux">USGS ↗</a></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" style="color: #a8482b; font-weight: 700">M4.9</td>
+<td class="gt_row gt_left" style="color: #1f3a5f; font-weight: 600">20 km NW of Finschhafen, Papua New Guinea</td>
+<td class="gt_row gt_right">73 km</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_right">2026-06-28 02:59</td>
+<td class="gt_row gt_left"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000t8s6">USGS ↗</a></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right gt_striped" style="color: #a8482b; font-weight: 700">M4.7</td>
+<td class="gt_row gt_left gt_striped" style="color: #1f3a5f; font-weight: 600">39 km SW of Kandrian, Papua New Guinea</td>
+<td class="gt_row gt_right gt_striped">30 km</td>
+<td class="gt_row gt_center gt_striped">—</td>
+<td class="gt_row gt_right gt_striped">2026-06-28 18:45</td>
+<td class="gt_row gt_left gt_striped"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000t8uv">USGS ↗</a></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" style="color: #a8482b; font-weight: 700">M4.7</td>
+<td class="gt_row gt_left" style="color: #1f3a5f; font-weight: 600">south of Africa</td>
+<td class="gt_row gt_right">10 km</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_right">2026-06-28 08:34</td>
+<td class="gt_row gt_left"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000t8ss">USGS ↗</a></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right gt_striped" style="color: #a8482b; font-weight: 700">M4.6</td>
+<td class="gt_row gt_left gt_striped" style="color: #1f3a5f; font-weight: 600">21 km WNW of Djelfa, Algeria</td>
+<td class="gt_row gt_right gt_striped">10 km</td>
+<td class="gt_row gt_center gt_striped">—</td>
+<td class="gt_row gt_right gt_striped">2026-06-28 18:37</td>
+<td class="gt_row gt_left gt_striped"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000t8ut">USGS ↗</a></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" style="color: #a8482b; font-weight: 700">M4.6</td>
+<td class="gt_row gt_left" style="color: #1f3a5f; font-weight: 600">244 km SSE of Dunhuang, China</td>
+<td class="gt_row gt_right">10 km</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_right">2026-06-28 03:39</td>
+<td class="gt_row gt_left"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000t8se">USGS ↗</a></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right gt_striped" style="color: #a8482b; font-weight: 700">M4.6</td>
+<td class="gt_row gt_left gt_striped" style="color: #1f3a5f; font-weight: 600">63 km WNW of Catuday, Philippines</td>
+<td class="gt_row gt_right gt_striped">10 km</td>
+<td class="gt_row gt_center gt_striped">—</td>
+<td class="gt_row gt_right gt_striped">2026-06-28 19:25</td>
+<td class="gt_row gt_left gt_striped"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000t8v2">USGS ↗</a></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" style="color: #a8482b; font-weight: 700">M4.5</td>
+<td class="gt_row gt_left" style="color: #1f3a5f; font-weight: 600">20 km W of Boca de Aroa, Venezuela</td>
+<td class="gt_row gt_right">10 km</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_right">2026-06-28 08:46</td>
+<td class="gt_row gt_left"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000t8su">USGS ↗</a></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right gt_striped" style="color: #a8482b; font-weight: 700">M4.5</td>
+<td class="gt_row gt_left gt_striped" style="color: #1f3a5f; font-weight: 600">48 km ENE of Noda, Japan</td>
+<td class="gt_row gt_right gt_striped">52 km</td>
+<td class="gt_row gt_center gt_striped">—</td>
+<td class="gt_row gt_right gt_striped">2026-06-28 05:39</td>
+<td class="gt_row gt_left gt_striped"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000t8si">USGS ↗</a></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" style="color: #a8482b; font-weight: 700">M4.5</td>
+<td class="gt_row gt_left" style="color: #1f3a5f; font-weight: 600">10 km SSE of Kiupo, Philippines</td>
+<td class="gt_row gt_right">60 km</td>
+<td class="gt_row gt_center">—</td>
+<td class="gt_row gt_right">2026-06-28 17:57</td>
+<td class="gt_row gt_left"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000t8uk">USGS ↗</a></td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_sourcenotes odd">
+<td colspan="6" class="gt_sourcenote"><span class="gt_from_md">PAGER = USGS impact estimate (green→red) · Data: <a href="https://earthquake.usgs.gov/earthquakes/">USGS Earthquake Hazards</a></span></td>
+</tr>
+</tfoot>
+
+</table>
+
+
+</div>
+</div>
+</div></div><div class="tab-pane html-fill-item html-fill-container" role="tabpanel" id="card-tabset-8-3"><div class="card-body html-fill-item html-fill-container" data-title="Significant (7d)">
+<div class="cell-output cell-output-display html-fill-item html-fill-container" data-execution_count="10">
+<div id="jbpfeffjrz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;" class="html-fill-item html-fill-container">
+<style>
+#jbpfeffjrz table {
+          font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+
+#jbpfeffjrz thead, tbody, tfoot, tr, td, th { border-style: none; }
+ tr { background-color: transparent; }
+#jbpfeffjrz p { margin: 0; padding: 0; }
+ #jbpfeffjrz .gt_table { display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 13px; font-weight: normal; font-style: normal; background-color: #faf7f1; width: auto; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; }
+ #jbpfeffjrz .gt_caption { padding-top: 4px; padding-bottom: 4px; }
+ #jbpfeffjrz .gt_title { color: #333333; font-size: 20px; font-weight: 600; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; border-bottom-color: #faf7f1; border-bottom-width: 0; }
+ #jbpfeffjrz .gt_subtitle { color: #333333; font-size: 13px; font-weight: initial; padding-top: 3px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; border-top-color: #faf7f1; border-top-width: 0; }
+ #jbpfeffjrz .gt_heading { background-color: #faf7f1; text-align: center; border-bottom-color: #faf7f1; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #jbpfeffjrz .gt_bottom_border { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
+ #jbpfeffjrz .gt_col_headings { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; }
+ #jbpfeffjrz .gt_col_heading { color: #FFFFFF; background-color: #1f3a5f; font-size: 100%; font-weight: 600; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; }
+ #jbpfeffjrz .gt_column_spanner_outer { color: #FFFFFF; background-color: #1f3a5f; font-size: 100%; font-weight: 600; text-transform: inherit; padding-top: 0; padding-bottom: 0; padding-left: 4px; padding-right: 4px; }
+ #jbpfeffjrz .gt_column_spanner_outer:first-child { padding-left: 0; }
+ #jbpfeffjrz .gt_column_spanner_outer:last-child { padding-right: 0; }
+ #jbpfeffjrz .gt_column_spanner { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 5px; overflow-x: hidden; display: inline-block; width: 100%; }
+ #jbpfeffjrz .gt_spanner_row { border-bottom-style: hidden; }
+ #jbpfeffjrz .gt_group_heading { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; color: #333333; background-color: #faf7f1; font-size: 100%; font-weight: initial; text-transform: inherit; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; text-align: left; }
+ #jbpfeffjrz .gt_empty_group_heading { padding: 0.5px; color: #333333; background-color: #faf7f1; font-size: 100%; font-weight: initial; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; vertical-align: middle; }
+ #jbpfeffjrz .gt_from_md> :first-child { margin-top: 0; }
+ #jbpfeffjrz .gt_from_md> :last-child { margin-bottom: 0; }
+ #jbpfeffjrz .gt_row { padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; }
+ #jbpfeffjrz .gt_stub { color: #333333; background-color: #faf7f1; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; }
+ #jbpfeffjrz .gt_stub_row_group { color: #333333; background-color: #faf7f1; font-size: 100%; font-weight: initial; text-transform: inherit; border-right-style: solid; border-right-width: 2px; border-right-color: #D3D3D3; padding-left: 5px; padding-right: 5px; vertical-align: top; }
+ #jbpfeffjrz .gt_row_group_first td { border-top-width: 2px; }
+ #jbpfeffjrz .gt_row_group_first th { border-top-width: 2px; }
+ #jbpfeffjrz .gt_striped { color: #333333; background-color: #F4F4F4; }
+ #jbpfeffjrz .gt_table_body { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
+ #jbpfeffjrz .gt_summary_row { color: #333333; background-color: #faf7f1; text-transform: inherit; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; }
+ #jbpfeffjrz .gt_first_summary_row { border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; }
+ #jbpfeffjrz .gt_last_summary_row_top { border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; }
+ #jbpfeffjrz .gt_grand_summary_row { color: #333333; background-color: #faf7f1; text-transform: inherit; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; }
+ #jbpfeffjrz .gt_first_grand_summary_row_bottom { border-top-style: double; border-top-width: 6px; border-top-color: #D3D3D3; }
+ #jbpfeffjrz .gt_last_grand_summary_row_top { border-bottom-style: double; border-bottom-width: 6px; border-bottom-color: #D3D3D3; }
+ #jbpfeffjrz .gt_sourcenotes { color: #333333; background-color: #faf7f1; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
+ #jbpfeffjrz .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
+ #jbpfeffjrz .gt_left { text-align: left; }
+ #jbpfeffjrz .gt_center { text-align: center; }
+ #jbpfeffjrz .gt_right { text-align: right; font-variant-numeric: tabular-nums; }
+ #jbpfeffjrz .gt_font_normal { font-weight: normal; }
+ #jbpfeffjrz .gt_font_bold { font-weight: bold; }
+ #jbpfeffjrz .gt_font_italic { font-style: italic; }
+ #jbpfeffjrz .gt_super { font-size: 65%; }
+ #jbpfeffjrz .gt_footnotes { color: font-color(#faf7f1); background-color: #faf7f1; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
+ #jbpfeffjrz .gt_footnote { margin: 0px; font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; }
+ #jbpfeffjrz .gt_sourcenotes { color: #333333; background-color: #faf7f1; border-bottom-style: none; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; }
+ #jbpfeffjrz .gt_sourcenote { font-size: 90%; padding-top: 4px; padding-bottom: 4px; padding-left: 5px; padding-right: 5px; text-align: left; }
+ #jbpfeffjrz .gt_footnote_marks { font-size: 75%; vertical-align: 0.4em; position: initial; }
+ #jbpfeffjrz .gt_asterisk { font-size: 100%; vertical-align: 0; }
+ 
+</style>
+
+<table class="gt_table caption-top table" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="6" class="gt_heading gt_title gt_font_normal">Significant earthquakes (last 7 days)</td>
+</tr>
+<tr class="gt_heading even">
+<td colspan="6" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">USGS 'significant' feed — the events that matter, with official links</td>
+</tr>
+<tr class="gt_col_headings header">
+<th id="mag_disp" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Mag</th>
+<th id="place" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Place</th>
+<th id="depth_disp" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Depth</th>
+<th id="alert" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">PAGER</th>
+<th id="time_str" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Time (UTC)</th>
+<th id="details" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Source</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_right" style="color: #a8482b; font-weight: 700">M4.2</td>
+<td class="gt_row gt_left" style="color: #1f3a5f; font-weight: 600">27 km WNW of Hope, Alaska</td>
+<td class="gt_row gt_right">47 km</td>
+<td class="gt_row gt_center">green</td>
+<td class="gt_row gt_right">2026-06-27 05:25</td>
+<td class="gt_row gt_left"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/aka2026mpitdk">USGS ↗</a></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right gt_striped" style="color: #a8482b; font-weight: 700">M6.5</td>
+<td class="gt_row gt_left gt_striped" style="color: #1f3a5f; font-weight: 600">34 km WSW of Sarangani, Philippines</td>
+<td class="gt_row gt_right gt_striped">42 km</td>
+<td class="gt_row gt_center gt_striped">green</td>
+<td class="gt_row gt_right gt_striped">2026-06-26 11:34</td>
+<td class="gt_row gt_left gt_striped"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000t8ec">USGS ↗</a></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" style="color: #a8482b; font-weight: 700">M6.9</td>
+<td class="gt_row gt_left" style="color: #1f3a5f; font-weight: 600">30 km ENE of Kuji, Japan</td>
+<td class="gt_row gt_right">51 km</td>
+<td class="gt_row gt_center">yellow</td>
+<td class="gt_row gt_right">2026-06-24 22:30</td>
+<td class="gt_row gt_left"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000t7zq">USGS ↗</a></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right gt_striped" style="color: #a8482b; font-weight: 700">M7.5</td>
+<td class="gt_row gt_left gt_striped" style="color: #1f3a5f; font-weight: 600">28 km SE of Yumare, Venezuela</td>
+<td class="gt_row gt_right gt_striped">10 km</td>
+<td class="gt_row gt_center gt_striped">red</td>
+<td class="gt_row gt_right gt_striped">2026-06-24 22:05</td>
+<td class="gt_row gt_left gt_striped"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000t7zp">USGS ↗</a></td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" style="color: #a8482b; font-weight: 700">M7.2</td>
+<td class="gt_row gt_left" style="color: #1f3a5f; font-weight: 600">23 km SE of Yumare, Venezuela</td>
+<td class="gt_row gt_right">20 km</td>
+<td class="gt_row gt_center">red</td>
+<td class="gt_row gt_right">2026-06-24 22:04</td>
+<td class="gt_row gt_left"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000t7zc">USGS ↗</a></td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right gt_striped" style="color: #a8482b; font-weight: 700">M5.6</td>
+<td class="gt_row gt_left gt_striped" style="color: #1f3a5f; font-weight: 600">11 km N of Redwood Valley, CA</td>
+<td class="gt_row gt_right gt_striped">9 km</td>
+<td class="gt_row gt_center gt_striped">yellow</td>
+<td class="gt_row gt_right gt_striped">2026-06-24 15:10</td>
+<td class="gt_row gt_left gt_striped"><a href="https://earthquake.usgs.gov/earthquakes/eventpage/nc75382936">USGS ↗</a></td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_sourcenotes odd">
+<td colspan="6" class="gt_sourcenote"><span class="gt_from_md">PAGER = USGS impact estimate (green→red) · Data: <a href="https://earthquake.usgs.gov/earthquakes/">USGS Earthquake Hazards</a></span></td>
+</tr>
+</tfoot>
+
+</table>
+
+
+</div>
+</div>
+</div></div><div class="tab-pane html-fill-item html-fill-container" role="tabpanel" id="card-tabset-8-4"><div class="card-body html-fill-item html-fill-container" data-title="Catalog — search &amp; sort">
+<div class="code-copy-outer-scaffold html-fill-item html-fill-container"><div class="sourceCode cell-code hidden html-fill-item html-fill-container" id="cb5" data-startfrom="158" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 157;"><span id="cb5-158"><a href="#cb5-158" aria-hidden="true" tabindex="-1"></a>viewof q <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">search</span>(quakes<span class="op">,</span> { <span class="dt">placeholder</span><span class="op">:</span> <span class="vs">`Search </span><span class="sc">${</span>quakes<span class="op">.</span><span class="at">length</span><span class="sc">}</span><span class="vs"> quakes…`</span> })</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display html-fill-item html-fill-container">
+<div id="ojs-cell-5" data-nodetype="declaration" class="html-fill-item html-fill-container">
+
+</div>
+</div>
+<div class="code-copy-outer-scaffold html-fill-item html-fill-container"><div class="sourceCode cell-code hidden html-fill-item html-fill-container" id="cb6" data-startfrom="163" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 162;"><span id="cb6-163"><a href="#cb6-163" aria-hidden="true" tabindex="-1"></a>Inputs<span class="op">.</span><span class="fu">table</span>(q<span class="op">,</span> {</span>
+<span id="cb6-164"><a href="#cb6-164" aria-hidden="true" tabindex="-1"></a>  <span class="dt">columns</span><span class="op">:</span> [<span class="st">"mag"</span><span class="op">,</span> <span class="st">"place"</span><span class="op">,</span> <span class="st">"depth"</span><span class="op">,</span> <span class="st">"time_str"</span>]<span class="op">,</span></span>
+<span id="cb6-165"><a href="#cb6-165" aria-hidden="true" tabindex="-1"></a>  <span class="dt">header</span><span class="op">:</span> { <span class="dt">mag</span><span class="op">:</span> <span class="st">"Mag"</span><span class="op">,</span> <span class="dt">place</span><span class="op">:</span> <span class="st">"Place"</span><span class="op">,</span> <span class="dt">depth</span><span class="op">:</span> <span class="st">"Depth (km)"</span><span class="op">,</span> <span class="dt">time_str</span><span class="op">:</span> <span class="st">"Time (UTC)"</span> }<span class="op">,</span></span>
+<span id="cb6-166"><a href="#cb6-166" aria-hidden="true" tabindex="-1"></a>  <span class="dt">sort</span><span class="op">:</span> <span class="st">"mag"</span><span class="op">,</span></span>
+<span id="cb6-167"><a href="#cb6-167" aria-hidden="true" tabindex="-1"></a>  <span class="dt">reverse</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb6-168"><a href="#cb6-168" aria-hidden="true" tabindex="-1"></a>  <span class="dt">rows</span><span class="op">:</span> <span class="dv">20</span><span class="op">,</span></span>
+<span id="cb6-169"><a href="#cb6-169" aria-hidden="true" tabindex="-1"></a>  <span class="dt">layout</span><span class="op">:</span> <span class="st">"auto"</span></span>
+<span id="cb6-170"><a href="#cb6-170" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display html-fill-item html-fill-container">
+<div id="ojs-cell-6" data-nodetype="expression" class="html-fill-item html-fill-container">
+
+</div>
+</div>
+</div></div></div><bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-columns: minmax(3em, 1fr);
+grid-auto-rows: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-fill="false" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-body html-fill-item html-fill-container">
+<p><strong>Source:</strong> USGS <code>/earthquakes/feed/v1.0/summary/{all_day, significant_week}.geojson</code> (public, no auth) — <a href="https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson">open the raw JSON</a> · <strong>Data as of:</strong> 2026-06-28 19:49 UTC · <strong>Code:</strong> <a href="https://github.com/ronaldmego/quake-radar">github.com/ronaldmego/quake-radar</a></p>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+</div>
+</div>
+</div>
+<div id="about" class="dashboard-page tab-pane grid-skip html-fill-item html-fill-container" data-orientation="rows" aria-labelledby="tab-about">
+<div class="html-fill-item html-fill-container bslib-grid" style="display: grid; grid-template-rows: minmax(3em, 1fr); grid-auto-columns: minmax(0, 1fr);">
+<div class="card html-fill-item html-fill-container bslib-card" data-title="How this dashboard works — automated, open-source data delivery" data-bslib-card-init="" data-require-bs-caller="card()" data-full-screen="false">
+<div class="card-header"><div class="card-title"><span style="display: inline">
+How this dashboard works — automated, open-source data delivery
+</span></div></div>
+<div class="card-body html-fill-item html-fill-container">
+<p><strong>Quake Radar</strong> is a live, <strong>open-source</strong> demo of <em>automated data delivery</em>: raw public data in, a polished self-updating dashboard out — with <strong>zero server and zero cost</strong>.</p>
+<strong>The pipeline (fully open, auditable):</strong>
+<pre><code>USGS GeoJSON API  →  Python (pandas + great-tables)  →  Quarto dashboard  →  GitHub Pages
+        \____________ refreshed every 30 min by GitHub Actions (cron) ____________/</code></pre>
+<ul>
+<li><strong>No server, no cost, no API key.</strong> The USGS feeds are public; a GitHub Actions cron re-fetches, re-renders and redeploys every 30 minutes.</li>
+<li><strong>Verifiable by design.</strong> Every number traces back to the exact public endpoint shown in the <em>Source</em> footer on each page — open the raw JSON and check it yourself.</li>
+<li><strong>Open methodology.</strong> The code that fetches and transforms the data is on GitHub; fork it, read it, reuse it.</li>
+</ul>
+<p><strong>Built &amp; maintained by Ronald Mego</strong> — data &amp; analytics. Code: <a href="https://github.com/ronaldmego/quake-radar">github.com/ronaldmego/quake-radar</a> · Profile: <a href="https://github.com/ronaldmego">github.com/ronaldmego</a></p>
+<p><strong>Data &amp; responsibility.</strong> Source: <a href="https://earthquake.usgs.gov/earthquakes/">USGS Earthquake Hazards Program</a> (public domain). This is an informational dashboard, not an official alert system — for emergencies and official guidance always refer to your national agency (e.g.&nbsp;<strong>FUNVISIS</strong> in Venezuela) and the official USGS event pages linked in each table.</p>
+</div>
+<bslib-tooltip placement="auto" bsoptions="[]" data-require-bs-version="5" data-require-bs-caller="tooltip()">
+    <template>Expand</template>
+    <span class="bslib-full-screen-enter badge rounded-pill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" style="height:1em;width:1em;" aria-hidden="true" role="img"><path d="M20 5C20 4.4 19.6 4 19 4H13C12.4 4 12 3.6 12 3C12 2.4 12.4 2 13 2H21C21.6 2 22 2.4 22 3V11C22 11.6 21.6 12 21 12C20.4 12 20 11.6 20 11V5ZM4 19C4 19.6 4.4 20 5 20H11C11.6 20 12 20.4 12 21C12 21.6 11.6 22 11 22H3C2.4 22 2 21.6 2 21V13C2 12.4 2.4 12 3 12C3.6 12 4 12.4 4 13V19Z"></path></svg>
+    </span>
+</bslib-tooltip><script data-bslib-card-init="">bslib.Card.initializeAllCards();</script></div>
+
+
+<div id="3ade8a4a-fb1d-4a6c-8409-ac45482d5fc9" class="hidden html-fill-item html-fill-container">
+
+</div>
+</div>
+</div>
+</div>
+
+
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImQzID0gcmVxdWlyZShcImQzQDdcIilcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InRvcG9qc29uID0gcmVxdWlyZShcInRvcG9qc29uLWNsaWVudEAzXCIpXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTMiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJsYW5kID0ge1xuICBjb25zdCB3b3JsZCA9IGF3YWl0IGQzLmpzb24oXCJodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvbnBtL3dvcmxkLWF0bGFzQDIvbGFuZC0xMTBtLmpzb25cIik7XG4gIHJldHVybiB0b3BvanNvbi5mZWF0dXJlKHdvcmxkLCB3b3JsZC5vYmplY3RzLmxhbmQpO1xufVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC00IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoiUGxvdC5wbG90KHtcbiAgd2lkdGg6IDExMDAsXG4gIGhlaWdodDogNTQwLFxuICBwcm9qZWN0aW9uOiBcImVxdWFsLWVhcnRoXCIsXG4gIHI6IHsgcmFuZ2U6IFsxLCAxNF0gfSxcbiAgY29sb3I6IHtcbiAgICB0eXBlOiBcImxpbmVhclwiLCBzY2hlbWU6IFwiWWxPclJkXCIsIHJldmVyc2U6IHRydWUsXG4gICAgZG9tYWluOiBbMCwgMzAwXSwgbGFiZWw6IFwiRGVwdGggKGttKVwiLCBsZWdlbmQ6IHRydWVcbiAgfSxcbiAgbWFya3M6IFtcbiAgICBQbG90LnNwaGVyZSh7IGZpbGw6IFwiI2VlZjFmNlwiLCBzdHJva2U6IFwiI2NiZDNkZlwiIH0pLFxuICAgIFBsb3QuZ2VvKGxhbmQsIHsgZmlsbDogXCIjZTNkZGNmXCIsIHN0cm9rZTogXCIjY2RiZmE1XCIgfSksXG4gICAgUGxvdC5kb3QocXVha2VzLCB7XG4gICAgICB4OiBcImxvblwiLCB5OiBcImxhdFwiLCByOiBcIm1hZ1wiLCBmaWxsOiBcImRlcHRoXCIsXG4gICAgICBzdHJva2U6IFwiI2ZmZlwiLCBzdHJva2VXaWR0aDogMC40LCBzdHJva2VPcGFjaXR5OiAwLjUsIGZpbGxPcGFjaXR5OiAwLjY4LFxuICAgICAgc29ydDogXCJtYWdcIiwgIC8vIGRyYXcgc3Ryb25nZXIgcXVha2VzIG9uIHRvcCBzbyB0aGV5IGFyZW4ndCBidXJpZWQgaW4gY2x1c3RlcnNcbiAgICAgIHRpdGxlOiBkID0+IGBNJHtkLm1hZ30gwrcgJHtkLnBsYWNlfVxcbiR7ZC5kZXB0aH0ga20gZGVlcCDCtyAke2QudGltZV9zdHJ9IFVUQ2AsXG4gICAgICB0aXA6IHRydWVcbiAgICB9KVxuICBdXG59KVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC01IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoidmlld29mIHEgPSBJbnB1dHMuc2VhcmNoKHF1YWtlcywgeyBwbGFjZWhvbGRlcjogYFNlYXJjaCAke3F1YWtlcy5sZW5ndGh9IHF1YWtlc+KApmAgfSlcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IklucHV0cy50YWJsZShxLCB7XG4gIGNvbHVtbnM6IFtcIm1hZ1wiLCBcInBsYWNlXCIsIFwiZGVwdGhcIiwgXCJ0aW1lX3N0clwiXSxcbiAgaGVhZGVyOiB7IG1hZzogXCJNYWdcIiwgcGxhY2U6IFwiUGxhY2VcIiwgZGVwdGg6IFwiRGVwdGggKGttKVwiLCB0aW1lX3N0cjogXCJUaW1lIChVVEMpXCIgfSxcbiAgc29ydDogXCJtYWdcIixcbiAgcmV2ZXJzZTogdHJ1ZSxcbiAgcm93czogMjAsXG4gIGxheW91dDogXCJhdXRvXCJcbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ3EnKSJ9XX0=
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../..";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/ronaldmego\.github\.io\/quake-radar");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (_event) {
+  if (window.bslib.Card) {
+    window.bslib.Card.initializeAllCards();
+  }
+}); 
+</script>
+  
+
+
+
+</body></html>
