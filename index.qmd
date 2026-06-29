@@ -121,10 +121,10 @@ Plot.plot({
 #| echo: false
 #| output: asis
 print(
-    "**Source:** USGS `/earthquakes/feed/v1.0/summary/all_day.geojson` (public, no auth) — "
-    "[open the raw JSON](https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson) · "
-    f"**Data as of:** {updated} · "
-    "**Code:** [github.com/ronaldmego/quake-radar](https://github.com/ronaldmego/quake-radar)"
+    "Source: **USGS Earthquake Hazards Program** — "
+    "[data feed documentation](https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php) · "
+    f"Data as of {updated} · "
+    "[source code](https://github.com/ronaldmego/quake-radar)"
 )
 ```
 
@@ -179,11 +179,10 @@ Inputs.table(q, {
 #| echo: false
 #| output: asis
 print(
-    "**Source:** USGS `/earthquakes/feed/v1.0/summary/{all_day, significant_week}.geojson` "
-    "(public, no auth) — "
-    "[open the raw JSON](https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson) · "
-    f"**Data as of:** {updated} · "
-    "**Code:** [github.com/ronaldmego/quake-radar](https://github.com/ronaldmego/quake-radar)"
+    "Source: **USGS Earthquake Hazards Program** — "
+    "[data feed documentation](https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php) · "
+    f"Data as of {updated} · "
+    "[source code](https://github.com/ronaldmego/quake-radar)"
 )
 ```
 
@@ -203,8 +202,8 @@ USGS GeoJSON API  →  Python (pandas + great-tables)  →  Quarto dashboard  �
 
 - **No server, no cost, no API key.** The USGS feeds are public; a GitHub Actions cron re-fetches,
   re-renders and redeploys every 30 minutes.
-- **Verifiable by design.** Every number traces back to the exact public endpoint shown in the
-  *Source* footer on each page — open the raw JSON and check it yourself.
+- **Verifiable by design.** Every number traces back to the public source cited in the
+  *Source* footer on each page (USGS, with a link to its documentation) and to the open code.
 - **Open methodology.** The code that fetches and transforms the data is on GitHub; fork it,
   read it, reuse it.
 
