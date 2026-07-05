@@ -8,3 +8,8 @@ website:
   title: "Quake Radar"
   site-url: "https://ronaldmego.github.io/quake-radar"
   description: "A live, auto-updating world map of earthquakes — public USGS data, refreshed every 30 minutes. Open-source, zero-server."
+  open-graph: true
+  twitter-card: true
+
+resources:
+  - llms.txt
