@@ -6,6 +6,15 @@ from datetime import datetime, timezone
 import pandas as pd
 
 
+# Canonical columns of the tidy DataFrame — kept even when a feed is empty so
+# downstream views never KeyError (e.g. 'significant_week' has zero events for a
+# calm week, which is normal and must render as an empty table, not crash CI).
+QUAKE_COLUMNS = [
+    "mag", "mag_type", "place", "lon", "lat", "depth", "time", "time_str",
+    "age_h", "url", "felt", "tsunami", "alert", "sig", "type",
+]
+
+
 def _alert_label(alert: str | None) -> str:
     # USGS PAGER alert level (impact estimate): green < yellow < orange < red.
     return (alert or "").lower() or "—"
@@ -43,7 +52,7 @@ def process_quakes(features: list[dict], now: datetime | None = None) -> pd.Data
                 "type": p.get("type") or "earthquake",
             }
         )
-    df = pd.DataFrame(rows)
+    df = pd.DataFrame(rows, columns=QUAKE_COLUMNS)
     if not df.empty:
         df = df.sort_values("time", ascending=False).reset_index(drop=True)
     return df
