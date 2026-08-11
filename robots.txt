@@ -1,1 +1,0 @@
-Sitemap: https://ronaldmego.github.io/quake-radar/sitemap.xml
